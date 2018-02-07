@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import InputField from './InputField';
 import { Button } from 'reactstrap';
 
+
 const TodoConfigOverlay = styled.div`
   top: 0;
   left: 0;
@@ -95,7 +96,7 @@ class TodoConfig extends Component { // eslint-disable-line react/prefer-statele
                 <InputField onChangeHandle={this.onChangeDescription} value={this.state.description} />
               </div>
               <div className="col-12">
-                <Button onClick={() => this.state.name && this.state.description && this.onAdder()}>ADD</Button>
+                <Button onClick={() => this.state.name && this.state.description && this.onAdder() && this.props.onClose()}>ADD</Button>
               </div>
             </div>
           </TodoContent>
