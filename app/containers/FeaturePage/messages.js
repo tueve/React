@@ -23,12 +23,12 @@ export default defineMessages({
     {
       name: 'TO DO APP',
       description: 'Application to create todo list. Enable to add, remove, edit, filter, ... todo item',
-      to: '/features/todos',
+      to: '/features/todo',
     },
     {
       name: 'GITHUB FINDER',
       description: 'Application to find out github user. Render all respositories of this user',
-      to: '/features/gitusers',
+      to: '/features/gituser',
     },
   ],
 });

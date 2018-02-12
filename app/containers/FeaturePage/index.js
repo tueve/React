@@ -36,7 +36,7 @@ export default class FeaturePage extends React.Component { // eslint-disable-lin
         <List>
           {
             items.map((item) =>
-              <ListItem to={item.to}>
+              <ListItem to={item.to} key={item.name}>
                 <ListItemTitle>
                   {item.name}
                 </ListItemTitle>
