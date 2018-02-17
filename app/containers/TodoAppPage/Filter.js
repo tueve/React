@@ -24,7 +24,7 @@ class Filter extends Component {
   }
 
   onSelectFilter = (changeEvt) => {
-    this.setState({ selectedOption: changeEvt.target.value }, () => {
+    this.setState({ selectedOption: changeEvt }, () => {
       this.props.onChangeHandle(this.state.selectedOption);
     });
   }

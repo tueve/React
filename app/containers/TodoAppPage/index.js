@@ -31,10 +31,6 @@ class TodoAppPage extends Component { // eslint-disable-line react/prefer-statel
     };
   }
 
-  componentWillMount() {
-    console.log(typeof this.props.todo, this.props.todo)
-  }
-
   onAction = {
     onHandleTodo: this.props.onHandleTodo,
     onDeleteTodo: this.props.onDeleteTodo,
@@ -43,7 +39,6 @@ class TodoAppPage extends Component { // eslint-disable-line react/prefer-statel
 
   onEditHandle = ({ id, name, description, status }) => this.setState({ todoDataConfig: { id, name, description, status }, showAdder: !this.state.showAdder });
   onAddHandle = () => this.setState({ showAdder: !this.state.showAdder, todoDataConfig: {} });
-  // onFilter = (filter) => this.setState({ todoList: this.props.todoList.filter((todo) => filter === 'All' ? true : todo.status === filter) });
   toggleShowAdder = () => this.setState({ showAdder: !this.state.showAdder });
 
   render() {
