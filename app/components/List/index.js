@@ -7,7 +7,6 @@ import Wrapper from './Wrapper';
 function List(props) {
   const ComponentToRender = props.component;
   let content = (<div></div>);
-
   // If we have items, render them
   if (props.items) {
     content = props.items.map((item) => (
@@ -20,9 +19,9 @@ function List(props) {
 
   return (
     <Wrapper>
-      <Ul>
+      <div className="row justify-content-center">
         {content}
-      </Ul>
+      </div>
     </Wrapper>
   );
 }

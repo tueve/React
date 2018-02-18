@@ -5,6 +5,16 @@ import PropTypes from 'prop-types';
 import InputField from './InputField';
 import { Button } from 'reactstrap';
 
+const ConfigWrapper = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+
+`;
 
 const TodoConfigOverlay = styled.div`
   top: 0;
@@ -81,7 +91,7 @@ class TodoConfig extends Component { // eslint-disable-line react/prefer-statele
 
   render() {
     return (
-      <div>
+      <ConfigWrapper>
         <TodoConfigOverlay onClick={() => this.props.onClose()} />
         <TodoConfigWrapper>
           <TodoHeader>TODO CONFIG</TodoHeader>
@@ -102,7 +112,7 @@ class TodoConfig extends Component { // eslint-disable-line react/prefer-statele
           </TodoContent>
           <TodoClose onClick={() => this.props.onClose()}>x</TodoClose>
         </TodoConfigWrapper>
-      </div>
+      </ConfigWrapper>
 
     );
   }

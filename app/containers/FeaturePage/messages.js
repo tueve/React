@@ -28,7 +28,7 @@ export default defineMessages({
     {
       name: 'GITHUB FINDER',
       description: 'Application to find out github user. Render all respositories of this user',
-      to: '/features/gituser',
+      to: '/features/github-dashboard',
     },
   ],
 });

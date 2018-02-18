@@ -6,14 +6,18 @@ const RadioWrapper = styled.div`
   margin: 0 10px;
 `;
 
+const InputButton = styled.input`
+  margin-right: 5px;
+`;
+
 const RadioButton = ({ value, selectedOption, onChangeHandle }) => (
   <RadioWrapper>
     <label>
-      <input
+      <InputButton
         type="radio"
         value={value}
         checked={selectedOption === value}
-        onChange={onChangeHandle}
+        onChange={(evt) => onChangeHandle(evt.target.value)}
       />
       {value}
     </label>
