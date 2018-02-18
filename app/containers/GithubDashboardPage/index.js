@@ -42,7 +42,7 @@ export class GithubApp extends React.Component { // eslint-disable-line react/pr
       <div>
         <Helmet>
           <title>Feature Page</title>
-          <meta name="description" content="Feature page of React.js Boilerplate application" />
+          <meta name="description" content="Github dashboard page" />
         </Helmet>
         <div className="col-12">
           <h2>GITHUB DASHBOARD</h2>
