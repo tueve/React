@@ -26,9 +26,14 @@ export default defineMessages({
       to: '/features/todo',
     },
     {
-      name: 'GITHUB FINDER',
+      name: 'GITHUB DASHBOARD',
       description: 'Application to find out github user. Render all respositories of this user',
       to: '/features/github-dashboard',
+    },
+    {
+      name: 'NPM TREND DASHBOARD',
+      description: 'Application to compare npm package information.',
+      to: '/features/npm-trend-dashboard',
     },
   ],
 });

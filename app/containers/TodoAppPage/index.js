@@ -46,7 +46,7 @@ class TodoAppPage extends Component { // eslint-disable-line react/prefer-statel
       <article>
         <Helmet>
           <title>TO DO APP</title>
-          <meta name="description" content="A React.js Boilerplate application homepage" />
+          <meta name="description" content="Todo app page" />
         </Helmet>
         <div className="col-12">
           <h2>TODO APP</h2>
