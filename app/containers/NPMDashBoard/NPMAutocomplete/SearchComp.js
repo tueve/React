@@ -34,8 +34,8 @@ class SearchComponent extends Component {
     }
   }
 
-  onAddPackage = (packageInput) => {
-    this.props.onAddPackage(packageInput);
+  onAddPackage = (evtHandle) => (packageInput) => {
+    evtHandle(packageInput);
     this.setState({ hasInput: false });
   }
 
@@ -55,8 +55,9 @@ class SearchComponent extends Component {
         { autoCompleteResult.length > 0 &&
           <DropdownAutocomplete
             listItem={autoCompleteResult}
-            onAddPackage={this.onAddPackage}
+            onAddPackage={this.onAddPackage(this.props.onAddPackage)}
             removeAutocompletePackage={removeAutocompletePackage}
+            onGetInfo={this.onAddPackage(this.props.onGetInfo)}
           />}
       </div>
     )

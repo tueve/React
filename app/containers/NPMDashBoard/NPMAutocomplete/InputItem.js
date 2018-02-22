@@ -20,16 +20,14 @@ class InputComponent extends Component {
 
   render() {
     return (
-      <div className="row">
-        <div className="col-12">
-          <input
-            className="form-control"
-            value={this.state.inputText}
-            placeholder="input npm package"
-            onChange={(evt) => this.onChangeHandle(evt)}
-            onFocus={(evt) => this.onChangeHandle(evt)}
-          />
-        </div>
+      <div className="col-12">
+        <input
+          className="form-control"
+          value={this.state.inputText}
+          placeholder="input npm package"
+          onChange={(evt) => this.onChangeHandle(evt)}
+          onFocus={(evt) => this.onChangeHandle(evt)}
+        />
       </div>
     );
   }

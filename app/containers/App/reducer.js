@@ -16,10 +16,13 @@ import {
   LOAD_REPOS_SUCCESS,
   LOAD_REPOS,
   LOAD_REPOS_ERROR,
+  LOGIN,
+  LOGOUT,
 } from './constants';
 
 // The initial state of the App
 const initialState = fromJS({
+  userInfo: null,
   loading: false,
   error: false,
   datas: {
@@ -42,6 +45,13 @@ function appReducer(state = initialState, action) {
       return state
         .set('error', action.error)
         .set('loading', false);
+    case LOGIN:
+      return state
+        .set('userInfo', action.userInfo);
+    case LOGOUT:
+      console.log('log out');
+      return state
+        .set('userInfo', null);
     default:
       return state;
   }

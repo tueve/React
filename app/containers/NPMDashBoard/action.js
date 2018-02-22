@@ -16,12 +16,17 @@
  */
 
 import {
-  GET_PACKAGE,
   INPUT_PACKAGE,
-  GET_AUTO_COMPLETE_PACKAGE,
+  GET_AUTOCOMPLETE_PACKAGE,
   REMOVE_AUTOCOMPLETE_PACKAGE,
   ADD_PACKAGE,
   REMOVE_PACKAGE,
+  GET_PACKAGE_DOWNLOAD_INFO,
+  GET_PACKAGE_INFO,
+  CLEAR_PACKAGE_INFO,
+  FILTER_PACKAGE_INFO,
+  SELECT_PACKAGE,
+  UPDATE_INFO_COMPARELIST,
 } from './constants';
 
 /**
@@ -48,7 +53,7 @@ export function getInputPackage(input) {
 
 export function getAutocompletePackage(datas) {
   return {
-    type: GET_AUTO_COMPLETE_PACKAGE,
+    type: GET_AUTOCOMPLETE_PACKAGE,
     datas,
   };
 }
@@ -98,3 +103,102 @@ export function removePackage(packageItem) {
   };
 }
 
+/**
+ * Choose the package to compare
+ *
+ * @param  {packageName} string Name of package that add to compare list
+ * @param  {data} object data of package get from API
+ *
+ * @return {object}    An action object with a type of INPUT_PACKAGE
+ */
+
+export function getPackageDownloadInfo(packageName, data) {
+  return {
+    type: GET_PACKAGE_DOWNLOAD_INFO,
+    data,
+    packageName,
+  };
+}
+
+/**
+ * Clear package info
+ *
+ *
+ * @return {object}    An action object with a type of INPUT_PACKAGE
+ */
+
+export function clearPackageInfo() {
+  return {
+    type: CLEAR_PACKAGE_INFO,
+  };
+}
+
+
+/**
+ * Choose the package to compare
+ *
+ * @param  {packageName} string Name of package that add to compare list
+ * @param  {data} object data of package get from API
+ *
+ * @return {object}    An action object with a type of INPUT_PACKAGE
+ */
+
+export function getPackageInfo(packageName, downloadData, packageData, color) {
+  return {
+    type: GET_PACKAGE_INFO,
+    downloadData,
+    packageName,
+    packageData,
+    color,
+  };
+}
+
+/**
+ * Choose the package to compare
+ *
+ * @param  {packageName} string Name of package that add to compare list
+ * @param  {data} object data of package get from API
+ *
+ * @return {object}    An action object with a type of INPUT_PACKAGE
+ */
+
+export function filterPackageInfo(filter) {
+  return {
+    type: FILTER_PACKAGE_INFO,
+    filter,
+  };
+}
+
+
+/**
+ * Choose the package to get detail
+ *
+ * @param  {packageName} string Name of package that add to compare list
+ *
+ * @return {object}    An action object with a type of INPUT_PACKAGE
+ */
+
+export function selectPackage(packageName) {
+  return {
+    type: SELECT_PACKAGE,
+    packageName,
+  };
+}
+
+/**
+ * Update comparelist information
+ *
+ * @param  {packageName} string Name of package that add to compare list
+ *
+ * @return {object}    An action object with a type of INPUT_PACKAGE
+ */
+
+export function updateComparelistInfo(packageName, downloadData, packageData, color) {
+  return {
+    type: UPDATE_INFO_COMPARELIST,
+    packageName,
+    downloadData,
+    packageData,
+    color,
+  };
+}
