@@ -9,8 +9,9 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { makeSelectError } from 'containers/App/selectors';
 import { createStructuredSelector } from 'reselect';
+import { Link } from 'react-router-dom';
 import { push } from 'react-router-redux';
-import { Spin } from 'antd';
+import { Spin, Button } from 'antd';
 import PropTypes from 'prop-types';
 
 import injectReducer from 'utils/injectReducer';
@@ -23,6 +24,7 @@ import
     makeSelectPackageList,
     makeSelectLoading,
     makeSelectPackageInfo,
+    makeSelectCompareMode,
   } from './selectors';
 import {
   getInputPackage,
@@ -32,6 +34,7 @@ import {
   clearPackageInfo,
   filterPackageInfo,
   selectPackage,
+  toggleCompareMode,
  } from './action';
 import reducer from './reducers';
 import saga from './saga';
@@ -50,13 +53,21 @@ export class NPMDashBoard extends React.Component { // eslint-disable-line react
     this.state = {
       chartType: 'line',
       defaultDuration: '6',
+      mode: '',
+      data: [],
     };
   }
 
   componentDidMount() {
-    const { location: { hash } } = this.props;
-    if (hash) {
-      this.props.selectPackage(hash.replace('#', ''));
+    const { location: { hash, search } } = this.props;
+    console.log(this.props, 'did mount');
+    if (search) {
+      if(!hash) {
+        this.props.selectPackage(search.replace('?', ''))
+      } else {
+        this.props.toggleCompare();
+        search.replace('?', '').split('&').map(item => this.onAddHandle(item));
+      }
     }
   }
 
@@ -69,16 +80,13 @@ export class NPMDashBoard extends React.Component { // eslint-disable-line react
     this.props.onSearchPackage();
   };
 
-  onHandleUrl = (packageItem, nameQuery) => {
-    const { match, location } = this.props;
-    const packageSearch = location.search.replace('?compareList=', '').split('/').filter(Boolean);
-    const newPackage = packageSearch.find((item) => item === packageItem) ?
-                        packageSearch.filter((item) => item !== packageItem) :
-                        [...packageSearch, packageItem];
-
-    const newUrl = { pathname: `${match.path}`, search: `compareList=${newPackage.join('/')}` };
-
-    this.props.onChangeUrl(newUrl);
+  onHandleUrl = (packageItem) => {
+    const { match, location: { search } } = this.props;
+    if (this.props.compareMode) {
+      const newCompareList = search.replace('?', '').split('&').filter(item => item !== packageItem);
+      const newUrl = { pathname: `${match.path}`, search: `${newCompareList.join('&')}`, hash: '#compare' };
+      this.props.onChangeUrl(newUrl);
+    }
   }
 
   onAddHandle = (packageItem) => {
@@ -107,6 +115,17 @@ export class NPMDashBoard extends React.Component { // eslint-disable-line react
     packageList.filter(Boolean).map((packageItem) => onAddPackage(packageItem));
   }
 
+  getUrlList = (list) => list.map((item) => item.name).join('&');
+
+  getLink = (item) => ({
+    search: this.props.compareMode ? `${this.props.location.search}&${item}` : `?${item}`,
+    hash: this.props.compareMode ? '#compare' : '',
+  })
+
+  onCompareHandle = () => {
+    this.props.toggleCompare();
+  }
+
   render() {
     const { compareList, loading, data } = this.props;
     return (
@@ -126,6 +145,7 @@ export class NPMDashBoard extends React.Component { // eslint-disable-line react
               autoCompleteResult={this.props.autoCompleteResult}
               onAddPackage={this.onAddHandle}
               onGetInfo={this.props.selectPackage}
+              getLink={this.getLink}
             />
           </div>
           {
@@ -149,10 +169,23 @@ export class NPMDashBoard extends React.Component { // eslint-disable-line react
             </div>
           }
           {
+            compareList.length > 1 &&
+            <Link
+                to={{
+                  search: `${this.getUrlList(compareList)}`,
+                  hash: '#compare',
+                }}
+              >
+                <div className="col-12">
+                  <Button onClick={this.onCompareHandle} className="col-12">COMPARE</Button>
+                </div>
+              </Link>
+          }
+          {
             !loading && data.name &&
             <div className="col-12">
               <NPMCompare
-                compareData={[data]}
+                compareData={!this.props.compareMode ? [data] : compareList}
                 filter={data.filter}
                 type={this.state.chartType}
               />
@@ -176,6 +209,7 @@ const mapStateToProps = createStructuredSelector({
   loading: makeSelectLoading(),
   compareList: makeSelectPackageList(),
   data: makeSelectPackageInfo(),
+  compareMode: makeSelectCompareMode(),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -188,6 +222,7 @@ const mapDispatchToProps = (dispatch) => ({
   clearPackageInfo: () => dispatch(clearPackageInfo()),
   onFilter: (filter) => dispatch(filterPackageInfo(filter)),
   selectPackage: (packageName) => dispatch(selectPackage(packageName)),
+  toggleCompare: () => dispatch(toggleCompareMode()),
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);

@@ -24,6 +24,7 @@ import {
   FILTER_PACKAGE_INFO,
   SELECT_PACKAGE,
   UPDATE_INFO_COMPARELIST,
+  TOGGLE_COMPARE_MODE,
 } from './constants';
 
 // The initial state of the App
@@ -35,6 +36,7 @@ const initialState = {
   loading: false,
   currentPackageInfo: [],
   packageSelected: '',
+  compareMode: false,
 };
 
 function NPMDashBoardReducer(state = initialState, action) {
@@ -113,6 +115,11 @@ function NPMDashBoardReducer(state = initialState, action) {
         ...state,
         packageSelected: action.packageName,
         loading: true,
+      };
+    case TOGGLE_COMPARE_MODE:
+      return {
+        ...state,
+        compareMode: true,
       };
     default:
       return state;

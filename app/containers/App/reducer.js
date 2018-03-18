@@ -49,7 +49,6 @@ function appReducer(state = initialState, action) {
       return state
         .set('userInfo', action.userInfo);
     case LOGOUT:
-      console.log('log out');
       return state
         .set('userInfo', null);
     default:

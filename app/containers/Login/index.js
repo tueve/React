@@ -80,7 +80,6 @@ class Login extends Component {
   onLoginSuccessHandle = (userInfo) => {
     this.props.onLogin(userInfo);
     this.setState({ redirectToReferrer: true }, () => console.log(this.state.redirectToReferrer, 'redirect'));
-    console.log('after login')
   }
 
   onLogoutHandle = () => {

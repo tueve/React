@@ -74,7 +74,7 @@ const NPMDetail = ({ 0:
         <ContentWrapper>
           <p>
             <LabelItem>Keywords</LabelItem>
-            {keywords.join(',')}
+            {keywords && keywords.join(',')}
           </p>
         </ContentWrapper>
         <ContentWrapper className="row">

@@ -12,7 +12,6 @@ const metaDataPackage = (packageData) => packageData.map((item) => {
   const contributors = github ? github.contributors.length : cannotGet;
 
   const { final: finalScore, detail: { quality, popularity, maintenance } } = score;
-  // console.log(description, name, version, keywords, author, links, downloads, homepage, starsCount, issues, contributors, finalScore, quality, popularity, maintenance, 'result');
 
   return { description, name, version, keywords, author, links, downloads, homepage, starsCount, issues, contributors, finalScore, quality, popularity, maintenance };
 });

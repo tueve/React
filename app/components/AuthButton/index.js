@@ -12,9 +12,10 @@ const AuthButton = ({ history, ...props }) => props.userInfo ? <p>
                                                 Welcome {props.userInfo._profile.name}
                                                 <Button
                                                   onClick={() => {
-                                                    this.props.onLogout();
+                                                    props.onLogout();
                                                     history.push('/');
                                                   }}
+                                                  className="ml-3"
                                                 >
                                                   Sign out
                                                 </Button>

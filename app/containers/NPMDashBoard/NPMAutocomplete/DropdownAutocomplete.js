@@ -11,7 +11,7 @@ const DropdownWrapper = styled.div`
   width: 100%;
 `;
 
-const DropdownBox = ({ listItem, onAddPackage, removeAutocompletePackage, onGetInfo }) => (
+const DropdownBox = ({ listItem, onAddPackage, removeAutocompletePackage, onGetInfo, getLink }) => (
   <div className="col-12">
     <div className="position-relative">
       <DropdownWrapper
@@ -26,6 +26,7 @@ const DropdownBox = ({ listItem, onAddPackage, removeAutocompletePackage, onGetI
               onAddPackage={onAddPackage}
               removeAutocompletePackage={removeAutocompletePackage}
               onGetInfo={onGetInfo}
+              getLink={getLink}
             />)
             )
         }

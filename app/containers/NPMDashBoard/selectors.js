@@ -51,6 +51,11 @@ const makeSelectPackageInfo = () => createSelector(
   },
 );
 
+const makeSelectCompareMode = () => createSelector(
+  selectNPMDashboard,
+  (npmDashboardState) => npmDashboardState.compareMode,
+);
+
 export {
   selectNPMDashboard,
   makeSelectPackageInput,
@@ -60,4 +65,5 @@ export {
   makeSelectCompareList,
   makeSelectLoading,
   makeSelectPackageInfo,
+  makeSelectCompareMode,
 };

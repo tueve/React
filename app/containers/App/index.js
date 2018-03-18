@@ -48,8 +48,8 @@ export default function App() {
         <PrivateRoute path="/features" exact component={FeaturePage} />
         <Route path="/features/todo" component={TodoAppPage} />
         <Route exact path="/features/github-dashboard" component={GithubDashboard} />
-        <Route exact path="/features/npm-trend-dashboard" component={NpmTrendDashBoard} />
-        <Route path="/features/npm-trend-dashboard/compare" component={TodoAppPage} />
+        <Route path="/features/npm-trend-dashboard" component={NpmTrendDashBoard} />
+        {/* <Route path="/features/npm-trend-dashboard/compare" component={TodoAppPage} /> */}
         <Route path="/npm-detail-page" component={NPMDetailPage} />
         <Route path="/login" component={Login} />
         <Route path="" component={NotFoundPage} />

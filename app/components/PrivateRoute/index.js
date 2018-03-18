@@ -8,7 +8,6 @@ import { makeSelectUserInfo } from 'containers/App/selectors';
 
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  console.log(rest, 'private', Component);
   return (
     <Route
       {...rest}

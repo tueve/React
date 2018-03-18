@@ -27,6 +27,7 @@ import {
   FILTER_PACKAGE_INFO,
   SELECT_PACKAGE,
   UPDATE_INFO_COMPARELIST,
+  TOGGLE_COMPARE_MODE,
 } from './constants';
 
 /**
@@ -200,5 +201,19 @@ export function updateComparelistInfo(packageName, downloadData, packageData, co
     downloadData,
     packageData,
     color,
+  };
+}
+
+/**
+ * Update comparelist information
+ *
+ * @param  {packageName} string Name of package that add to compare list
+ *
+ * @return {object}    An action object with a type of INPUT_PACKAGE
+ */
+
+export function toggleCompareMode() {
+  return {
+    type: TOGGLE_COMPARE_MODE,
   };
 }
