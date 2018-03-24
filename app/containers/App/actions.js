@@ -19,6 +19,8 @@ import {
   LOAD_REPOS,
   LOAD_REPOS_SUCCESS,
   LOAD_REPOS_ERROR,
+  LOGIN,
+  LOGOUT,
 } from './constants';
 
 /**
@@ -57,5 +59,33 @@ export function repoLoadingError(error) {
   return {
     type: LOAD_REPOS_ERROR,
     error,
+  };
+}
+
+/**
+ * Dispatched when loading the repositories fails
+ *
+ * @param  {object} error The error
+ *
+ * @return {object}       An action object with a type of LOAD_REPOS_ERROR passing the error
+ */
+export function login(userInfo) {
+  return {
+    type: LOGIN,
+    userInfo,
+  };
+}
+
+
+/**
+ * Dispatched when loading the repositories fails
+ *
+ * @param  {object} error The error
+ *
+ * @return {object}       An action object with a type of LOAD_REPOS_ERROR passing the error
+ */
+export function logout() {
+  return {
+    type: LOGOUT,
   };
 }

@@ -17,6 +17,7 @@ import FontFaceObserver from 'fontfaceobserver';
 import createHistory from 'history/createBrowserHistory';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'sanitize.css/sanitize.css';
+import 'antd/dist/antd.min.css';
 
 // Import root app
 import App from 'containers/App';

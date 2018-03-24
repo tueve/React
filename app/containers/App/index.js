@@ -16,9 +16,12 @@ import FeaturePage from 'containers/FeaturePage/Loadable';
 import TodoAppPage from 'containers/TodoAppPage/Loadable';
 import GithubDashboard from 'containers/GithubDashboardPage';
 import NpmTrendDashBoard from 'containers/NPMDashBoard';
+import NPMDetailPage from 'containers/NPMDetailPage';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import Login from 'containers/Login';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
+import PrivateRoute from 'components/PrivateRoute';
 
 const AppWrapper = styled.div`
   max-width: calc(768px + 16px * 2);
@@ -41,11 +44,14 @@ export default function App() {
       <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route exact path="/features" component={FeaturePage} />
+        {/* <Route exact path="/features" component={FeaturePage} /> */}
+        <PrivateRoute path="/features" exact component={FeaturePage} />
         <Route path="/features/todo" component={TodoAppPage} />
         <Route exact path="/features/github-dashboard" component={GithubDashboard} />
-        <Route exact path="/features/npm-trend-dashboard" component={NpmTrendDashBoard} />
-        <Route path="/features/npm-trend-dashboard/compare" component={TodoAppPage} />
+        <Route path="/features/npm-trend-dashboard" component={NpmTrendDashBoard} />
+        {/* <Route path="/features/npm-trend-dashboard/compare" component={TodoAppPage} /> */}
+        <Route path="/npm-detail-page" component={NPMDetailPage} />
+        <Route path="/login" component={Login} />
         <Route path="" component={NotFoundPage} />
       </Switch>
       <Footer />

@@ -18,7 +18,7 @@ const makeSelectSelectedCategory = () => createSelector(
 
 const makeSelectGitData = () => createSelector(
   selectGitDashboard,
-  (gitDashboardState) => {console.log(gitDashboardState); return gitDashboardState.data;}
+  (gitDashboardState) => gitDashboardState.data,
 );
 
 export {

@@ -9,6 +9,7 @@ const ListItem = styled(Link)`
   &:hover {
     background-color: #6cc0e5;
     cursor: pointer;
+    color: white;
   }
 `;
 

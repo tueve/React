@@ -28,10 +28,19 @@ const makeSelectLocation = () => createSelector(
   (routeState) => routeState.get('location').toJS()
 );
 
+
+const makeSelectUserInfo = () => createSelector(
+  selectGlobal,
+  (globalState) => globalState.get('userInfo')
+);
+
+
 export {
   selectGlobal,
+  selectAuthorticate,
   makeSelectLoading,
   makeSelectError,
   makeSelectDatas,
   makeSelectLocation,
+  makeSelectUserInfo,
 };
