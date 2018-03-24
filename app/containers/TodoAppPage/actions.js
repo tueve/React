@@ -23,11 +23,11 @@ import {
 } from './constants';
 
 /**
- * Changes the input field of the form
+ * Delete todo
  *
- * @param  {id} number The new text of the input field
+ * @param  {id} number Number of id of todo
  *
- * @return {object}    An action object with a type of deleteTodo
+ * @return {object}    An action object with a type of DELETE_TODO
  */
 
 export function deleteTodo(id) {
@@ -38,16 +38,17 @@ export function deleteTodo(id) {
 }
 
 /**
- * Changes the input field of the form
+ * Add todo
  *
- * @param  {id} number The new text of the input field
- * @param  {description} string The new text of the input field
- * @param  {id} number The id of todo
+ * @param  {id} number Number of id of todo
+ * @param  {description} string Description of todo
+ * @param  {name} string Name of todo
+ * @param  {status} string Status of todo
  *
- * @return {object}    An action object with a type of editTodo
+ * @return {object}    An action object with a type of ADD_TODO
  */
 
-export function addTodo({ name, description, id, status = 'todo' }) {
+export function addTodo({ name, description, id = false, status = 'todo' }) {
   return {
     type: ADD_TODO,
     id,
@@ -58,12 +59,12 @@ export function addTodo({ name, description, id, status = 'todo' }) {
 }
 
 /**
- * Changes the input field of the form
+ * Change status of todo
  *
  * @param  {id} number The id of todo
  * @param  {status} string The status of todo
  *
- * @return {object}    An action object with a type of handleTodo
+ * @return {object}    An action object with a type of HANDLE_TODO
  */
 
 export function handleTodo(id, status) {
@@ -75,7 +76,7 @@ export function handleTodo(id, status) {
 }
 
 /**
- * Changes the input field of the form
+ * Filter todo
  *
  * @param  {filter} string The id of todo
  *

@@ -87,7 +87,11 @@ class TodoConfig extends Component { // eslint-disable-line react/prefer-statele
 
   onChangeName = (name) => this.setState({ name });
   onChangeDescription = (description) => this.setState({ description });
-  onAdder = () => this.props.onAdder({ name: this.state.name, description: this.state.description, id: this.props.todo.id || false })
+  onAdder = () => this.props.onAdder(
+    { name: this.state.name,
+      description: this.state.description,
+      id: this.props.todo.id || false
+    })
 
   render() {
     return (
@@ -99,14 +103,25 @@ class TodoConfig extends Component { // eslint-disable-line react/prefer-statele
             <div className="row">
               <div className="col-12">
                 <TodoLabel>Todo Title</TodoLabel>
-                <InputField onChangeHandle={this.onChangeName} value={this.state.name} />
+                <InputField
+                  onChangeHandle={this.onChangeName}
+                  value={this.state.name}
+                />
               </div>
               <div className="col-12 mb-3">
                 <TodoLabel>Todo description</TodoLabel>
-                <InputField onChangeHandle={this.onChangeDescription} value={this.state.description} />
+                <InputField
+                  onChangeHandle={this.onChangeDescription}
+                  value={this.state.description}
+                />
               </div>
               <div className="col-12">
-                <Button onClick={() => this.state.name && this.state.description && this.onAdder() && this.props.onClose()}>ADD</Button>
+                <Button
+                  onClick={() =>
+                    this.state.name && 
+                    this.state.description && 
+                    this.onAdder() && 
+                    this.props.onClose()}>ADD</Button>
               </div>
             </div>
           </TodoContent>

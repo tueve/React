@@ -3,37 +3,37 @@
  */
 
 import { createSelector } from 'reselect';
+import { toJS } from 'immutable';
 
 const selectTodo = (state) => state.get('todo');
 
-const getVisibilityFilter = (state) => state.get('todo').filter;
-
+const getVisibilityFilter = () => createSelector(
+  selectTodo,
+  (todoState) => todoState.get('filter')
+);
 const makeSelectTodo = () => createSelector(
   selectTodo,
-  (todoState) => todoState.todoList
+  (todoState) => todoState.get('todoList')
 );
 
 const todoViewer = () => createSelector(
-  [selectTodo, getVisibilityFilter],
+  [makeSelectTodo(), getVisibilityFilter()],
   (todoState, visibilityFilter) => {
     switch (visibilityFilter) {
       case 'TODO':
-        return {
-          ...todoState,
-          todoList: todoState.todoList.filter((todo) => todo.status === 'todo'),
-        };
+        return todoState
+          .filter((todo) => todo.get('status') === 'todo')
+          .toJS();
       case 'DOING':
-        return {
-          ...todoState,
-          todoList: todoState.todoList.filter((todo) => todo.status === 'doing'),
-        };
+        return todoState
+          .filter((todo) => todo.get('status') === 'doing')
+          .toJS();
       case 'DONE':
-        return {
-          ...todoState,
-          todoList: todoState.todoList.filter((todo) => todo.status === 'done'),
-        };
+        return todoState
+          .filter((todo) => todo.get('status') === 'done')
+          .toJS();
       default:
-        return todoState;
+        return todoState.toJS();
     }
   }
 );

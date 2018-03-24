@@ -2,7 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import RadioButton from '../../components/RadioButton';
+import { Radio } from 'antd';
+const RadioButton = Radio.Button;
+const RadioGroup = Radio.Group;
 
 const LanguageBarWrapper = styled.div`
   display: block;
@@ -10,19 +12,17 @@ const LanguageBarWrapper = styled.div`
 
 const LanguageBar = ({ languages, selectedLanguage, selectLanguage }) => (
   <LanguageBarWrapper>
-    <div className="row">
+    <RadioGroup onChange={selectLanguage} defaultValue={selectedLanguage}>
       {
         languages.map((language) => (
-          <div className="col-6 col-sm-4 col-md-2 p-0" key={`${language}_${Math.random()}`}>
-            <RadioButton
-              value={language}
-              selectedOption={selectedLanguage}
-              onChangeHandle={selectLanguage}
-            />
-          </div>
-        ))
-      }
-    </div>
+          <RadioButton
+            value={language}
+            key={`${language}_${Math.random()}`}
+          >
+            {language}
+          </RadioButton>
+      ))}
+    </RadioGroup>
   </LanguageBarWrapper>
 );
 

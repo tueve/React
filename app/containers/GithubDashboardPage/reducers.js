@@ -9,7 +9,7 @@
  * case YOUR_ACTION_CONSTANT:
  *   return state.set('yourStateVariable', true);
  */
-import { fromJS } from 'immutable';
+import { fromJS, set } from 'immutable';
 
 import {
   CHANGE_CATEGORY,
@@ -17,24 +17,20 @@ import {
 } from './constants';
 
 // The initial state of the App
-const initialState = {
+const initialState = fromJS({
   category: ['All', 'Javascript', 'Php', 'Python', 'Java', 'C#'],
   selectedCategory: 'All',
   data: {},
-};
+});
 
 function githubDashBoardReducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_CATEGORY:
-      return {
-        ...state,
-        selectedCategory: action.category,
-      };
+      return state
+        .set('selectedCategory', action.category);
     case LOAD_REPOS_SUCCESS:
-      return {
-        ...state,
-        data: { ...action.datas },
-      };
+      return state
+        .set('data', action.datas);
     default:
       return state;
   }

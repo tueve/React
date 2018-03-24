@@ -33,7 +33,7 @@ import {
 /**
  * Changes the input field of the form
  *
- * @param  {input} string The new text of the input field
+ * @param  {input} string Input name
  *
  * @return {object}    An action object with a type of INPUT_PACKAGE
  */
@@ -47,9 +47,9 @@ export function getInputPackage(input) {
 /**
  * Changes the input field of the form
  *
- * @param  {input} string The new text of the input field
+ * @param  {datas} object The data from API when get auto complete data
  *
- * @return {object}    An action object with a type of INPUT_PACKAGE
+ * @return {object}    An action object with a type of GET_AUTOCOMPLETE_PACKAGE
  */
 
 export function getAutocompletePackage(datas) {
@@ -60,11 +60,9 @@ export function getAutocompletePackage(datas) {
 }
 
 /**
- * Changes the input field of the form
+ * Remove autocomplete data
  *
- * @param  {input} string The new text of the input field
- *
- * @return {object}    An action object with a type of INPUT_PACKAGE
+ * @return {object}    An action object with a type of REMOVE_AUTOCOMPLETE_PACKAGE
  */
 
 export function removeAutocompletePackage() {
@@ -75,11 +73,11 @@ export function removeAutocompletePackage() {
 
 
 /**
- * Choose the package to compare
+ * Add package to compare list
  *
- * @param  {input} string Name of package that add to compare list
+ * @param  {packageItem} object Name of package that add to compare list
  *
- * @return {object}    An action object with a type of INPUT_PACKAGE
+ * @return {object}    An action object with a type of ADD_PACKAGE
  */
 
 export function addPackage(packageItem) {
@@ -90,11 +88,11 @@ export function addPackage(packageItem) {
 }
 
 /**
- * Choose the package to compare
+ * Remove package from compare list
  *
- * @param  {input} string Name of package that add to compare list
+ * @param  {packageItem} string Name of package that remove from compare list
  *
- * @return {object}    An action object with a type of INPUT_PACKAGE
+ * @return {object}    An action object with a type of REMOVE_PACKAGE
  */
 
 export function removePackage(packageItem) {
@@ -105,27 +103,9 @@ export function removePackage(packageItem) {
 }
 
 /**
- * Choose the package to compare
- *
- * @param  {packageName} string Name of package that add to compare list
- * @param  {data} object data of package get from API
- *
- * @return {object}    An action object with a type of INPUT_PACKAGE
- */
-
-export function getPackageDownloadInfo(packageName, data) {
-  return {
-    type: GET_PACKAGE_DOWNLOAD_INFO,
-    data,
-    packageName,
-  };
-}
-
-/**
  * Clear package info
  *
- *
- * @return {object}    An action object with a type of INPUT_PACKAGE
+ * @return {object}    An action object with a type of CLEAR_PACKAGE_INFO
  */
 
 export function clearPackageInfo() {
@@ -136,12 +116,14 @@ export function clearPackageInfo() {
 
 
 /**
- * Choose the package to compare
+ * Get data of package from API
  *
- * @param  {packageName} string Name of package that add to compare list
- * @param  {data} object data of package get from API
+ * @param  {packageName} string Name of package that need to be get data
+ * @param  {packageData} object data of package get from API
+ * @param  {color} strong color for this package
+ * @param  {downloadData} strong downloading data from npm
  *
- * @return {object}    An action object with a type of INPUT_PACKAGE
+ * @return {object}    An action object with a type of GET_PACKAGE_INFO
  */
 
 export function getPackageInfo(packageName, downloadData, packageData, color) {
@@ -155,12 +137,11 @@ export function getPackageInfo(packageName, downloadData, packageData, color) {
 }
 
 /**
- * Choose the package to compare
+ * Filter data
  *
- * @param  {packageName} string Name of package that add to compare list
- * @param  {data} object data of package get from API
+ * @param  {filter} string Name of filter
  *
- * @return {object}    An action object with a type of INPUT_PACKAGE
+ * @return {object}    An action object with a type of FILTER_PACKAGE_INFO
  */
 
 export function filterPackageInfo(filter) {
@@ -174,9 +155,9 @@ export function filterPackageInfo(filter) {
 /**
  * Choose the package to get detail
  *
- * @param  {packageName} string Name of package that add to compare list
+ * @param  {packageName} string Name of package that need to get data information
  *
- * @return {object}    An action object with a type of INPUT_PACKAGE
+ * @return {object}    An action object with a type of SELECT_PACKAGE
  */
 
 export function selectPackage(packageName) {
@@ -189,9 +170,10 @@ export function selectPackage(packageName) {
 /**
  * Update comparelist information
  *
- * @param  {packageName} string Name of package that add to compare list
- *
- * @return {object}    An action object with a type of INPUT_PACKAGE
+ * @param {packageName} string Name of package that add to compare list
+ * @param {packageData} object data of package
+ * @param {color} string color of package
+ * @return {object} An action object with a type of UPDATE_INFO_COMPARELIST
  */
 
 export function updateComparelistInfo(packageName, downloadData, packageData, color) {
@@ -205,11 +187,9 @@ export function updateComparelistInfo(packageName, downloadData, packageData, co
 }
 
 /**
- * Update comparelist information
+ * Toggle compare mode
  *
- * @param  {packageName} string Name of package that add to compare list
- *
- * @return {object}    An action object with a type of INPUT_PACKAGE
+ * @return {object}    An action object with a type of TOGGLE_COMPARE_MODE
  */
 
 export function toggleCompareMode() {

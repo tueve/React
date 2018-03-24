@@ -4,41 +4,41 @@
  * This is todo App Page, at the '/features/todo' route
  */
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Button } from 'reactstrap';
-import { Helmet } from 'react-helmet';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import { createStructuredSelector } from 'reselect';
+import   React                   , { Component } from 'react'       ;
+import   PropTypes                               from 'prop-types'  ;
+import { Button                   }              from 'reactstrap'  ;
+import { Helmet                   }              from 'react-helmet';
+import { connect                  }              from 'react-redux' ;
+import { compose                  }              from 'redux'       ;
+import { createStructuredSelector }              from 'reselect'    ;
 
-import injectReducer from 'utils/injectReducer';
-import { todoViewer } from './selectors';
-import { addTodo, handleTodo, deleteTodo, filterTodo } from './actions';
-import reducer from './reducers';
+import   injectReducer                                       from 'utils/injectReducer';
+import { todoViewer    }                                     from './selectors'        ;
+import { addTodo      , handleTodo, deleteTodo, filterTodo } from './actions'          ;
+import   reducer                                             from './reducers'         ;
 
-import List from './ListTodo';
+import List       from './ListTodo'  ;
 import TodoConfig from './TodoConfig';
-import Filter from './Filter';
+import Filter     from './Filter'    ;
 
 class TodoAppPage extends Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
     this.state = {
-      todoDataConfig: {},
-      showAdder: false,
-      filter: 'All',
+      todoDataConfig: {}   ,
+      showAdder     : false,
+      filter        : 'All',
     };
   }
 
   onAction = {
     onHandleTodo: this.props.onHandleTodo,
     onDeleteTodo: this.props.onDeleteTodo,
-    onAddTodo: this.props.onAddTodo,
+    onAddTodo   : this.props.onAddTodo   ,
   };
 
-  onEditHandle = ({ id, name, description, status }) => this.setState({ todoDataConfig: { id, name, description, status }, showAdder: !this.state.showAdder });
-  onAddHandle = () => this.setState({ showAdder: !this.state.showAdder, todoDataConfig: {} });
+  onEditHandle    = ({ id, name, description, status }) => this.setState({ todoDataConfig: { id, name, description, status }, showAdder: !this.state.showAdder });
+  onAddHandle     = () => this.setState({ showAdder: !this.state.showAdder, todoDataConfig: {} });
   toggleShowAdder = () => this.setState({ showAdder: !this.state.showAdder });
 
   render() {
@@ -57,12 +57,16 @@ class TodoAppPage extends Component { // eslint-disable-line react/prefer-statel
           {
             this.state.showAdder &&
             <TodoConfig
-              onClose={this.toggleShowAdder}
-              onAdder={this.props.onAddTodo}
-              todo={this.state.todoDataConfig}
+              onClose = {this.toggleShowAdder}
+              onAdder = {this.props.onAddTodo}
+              todo    = {this.state.todoDataConfig}
             />
           }
-          <List listTodo={this.props.todo.todoList} onAction={this.onAction} onEditHandle={this.onEditHandle}></List>
+          <List
+            listTodo     = {this.props.todo}
+            onAction     = {this.onAction}
+            onEditHandle = {this.onEditHandle}
+          />
         </div>
       </article>
     );
@@ -71,7 +75,7 @@ class TodoAppPage extends Component { // eslint-disable-line react/prefer-statel
 
 export function mapDispatchToProps(dispatch) {
   return {
-    onAddTodo: ({ name, description, id }) => dispatch(addTodo({ name, description, id })),
+    onAddTodo   : ({ name, description,  id = false }) => dispatch(addTodo({ name, description, id })),
     onHandleTodo: (id, status) => dispatch(handleTodo(id, status)),
     onDeleteTodo: (id) => dispatch(deleteTodo(id)),
     onFilterTodo: (filter) => dispatch(filterTodo(filter)),
@@ -80,20 +84,20 @@ export function mapDispatchToProps(dispatch) {
 
 const mapStateToProps = createStructuredSelector({ todo: todoViewer() });
 
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
+const withConnect     = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer({ key: 'todo', reducer });
+const withReducer     = injectReducer({ key: 'todo', reducer });
 
-TodoAppPage.propTypes = {
-  todo: PropTypes.shape({
-    todoList: PropTypes.array.isRequired,
-    filter: PropTypes.string.isRequired,
-  }).isRequired,
-  onHandleTodo: PropTypes.func,
-  onDeleteTodo: PropTypes.func,
-  onAddTodo: PropTypes.func,
-  onFilterTodo: PropTypes.func,
-};
+// TodoAppPage.propTypes = {
+//   todo: PropTypes.shape({
+//     todoList: PropTypes.array.isRequired,
+//     filter: PropTypes.string.isRequired,
+//   }).isRequired,
+//   onHandleTodo: PropTypes.func,
+//   onDeleteTodo: PropTypes.func,
+//   onAddTodo: PropTypes.func,
+//   onFilterTodo: PropTypes.func,
+// };
 
 export default compose(
   withReducer,

@@ -77,6 +77,7 @@ function* getNPMDownloadData(action) {
     const color = randomColor({ luminosity: 'dark' });
     yield put(getPackageInfo(packageName, downloadData, packageData, color));
     const compareList = yield select(makeSelectCompareList());
+    console.log(compareList, 'comparelist ')
     if (compareList.find((item) => item.name === packageName)) {
       yield put(updateComparelistInfo(packageName, downloadData, packageData, color));
     }

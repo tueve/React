@@ -4,8 +4,8 @@ import { Button } from 'antd';
 import styled from 'styled-components';
 
 const LabelItem = styled.span`
-  font-size: 1rem;
-  font-weight: 600;
+  font-size   : 1rem;
+  font-weight : 600;
   margin-right: 10px;
 `;
 
@@ -27,11 +27,11 @@ const ListItem = styled.ul`
 `;
 
 const Avatar = styled.div`
-  background-image: url(${(props) => props.backgroundImage});
-  background-size: cover;
+  background-image   : url(${(props) => props.backgroundImage});
+  background-size    : cover;
   background-position: center;
-  width: 300px;
-  height: 300px;
+  width              : 300px;
+  height             : 300px;
 `;
 
 const NPMDetail = ({ 0:
@@ -52,9 +52,9 @@ const NPMDetail = ({ 0:
       <div className="col-12 mt-3">
         <h3 className="d-flex">{name}
           <AddToCompare
-            type="primary"
-            icon="plus"
-            size="large"
+            type = "primary"
+            icon = "plus"
+            size = "large"
             onClick={() => onAddPackage(name)}
           >Add to compare</AddToCompare>
         </h3>
@@ -94,10 +94,10 @@ const NPMDetail = ({ 0:
           </div>
           <div className="col-12 col-sm-6">
             <ListItem>
-              <li><Link to={links.homepage} target="_blank"><LabelItem>homepage</LabelItem></Link></li>
-              <li><Link to={links.repository} target="_blank"><LabelItem>github</LabelItem></Link></li>
-              <li><Link to={links.npm} target="_blank"><LabelItem>npm</LabelItem></Link></li>
-              <li><Link to={links.bugs} target="_blank"><LabelItem>bugs</LabelItem></Link></li>
+              <li><Link to={links.homepage  } target="_blank"><LabelItem>homepage</LabelItem></Link></li>
+              <li><Link to={links.repository} target="_blank"><LabelItem>github  </LabelItem></Link></li>
+              <li><Link to={links.npm       } target="_blank"><LabelItem>npm     </LabelItem></Link></li>
+              <li><Link to={links.bugs      } target="_blank"><LabelItem>bugs    </LabelItem></Link></li>
             </ListItem>
           </div>
         </ContentWrapper>
@@ -110,8 +110,8 @@ const NPMDetail = ({ 0:
               <p><LabelItem>Maintainers</LabelItem> 12</p>
             </div>
             <div>
-              <p><LabelItem>Daily downloads:</LabelItem> {downloads[0]}</p>
-              <p><LabelItem>Weekly downloads:</LabelItem>{downloads[1]}</p>
+              <p><LabelItem>Daily   downloads:</LabelItem> {downloads[0]}</p>
+              <p><LabelItem>Weekly  downloads:</LabelItem> {downloads[1]}</p>
               <p><LabelItem>Monthly downloads:</LabelItem> {downloads[2]}</p>
             </div>
           </div>
@@ -120,10 +120,10 @@ const NPMDetail = ({ 0:
               <p><LabelItem>Open issues:</LabelItem> {issues.openCount}</p>
             </div>
             <div>
-              <p><LabelItem>Quality score:</LabelItem> {Math.floor(quality * 100)}</p>
-              <p><LabelItem>Popularity score</LabelItem> {Math.floor(popularity * 100)}</p>
-              <p><LabelItem>Maintainance score</LabelItem> {Math.floor(maintenance * 100)}</p>
-              <p><LabelItem>Avarage score</LabelItem> {Math.floor(finalScore * 100)}</p>
+              <p><LabelItem>Quality      score:</LabelItem> {Math.floor(quality     * 100)}</p>
+              <p><LabelItem>Popularity   score </LabelItem> {Math.floor(popularity  * 100)}</p>
+              <p><LabelItem>Maintainance score </LabelItem> {Math.floor(maintenance * 100)}</p>
+              <p><LabelItem>Avarage      score </LabelItem> {Math.floor(finalScore  * 100)}</p>
             </div>
           </div>
         </div>

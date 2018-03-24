@@ -1,14 +1,14 @@
-import React from 'react';
-import _ from 'lodash';
+import React  from 'react'            ;
+import _      from 'lodash'           ;
 import styled from 'styled-components';
 
 import AutoCompleteItem from './AutoCompleteItem';
 
 const DropdownWrapper = styled.div`
-  position: absolute;
+  position        : absolute;
   background-color: white;
-  z-index: 2;
-  width: 100%;
+  z-index         : 2;
+  width           : 100%;
 `;
 
 const DropdownBox = ({ listItem, onAddPackage, removeAutocompletePackage, onGetInfo, getLink }) => (
@@ -20,13 +20,13 @@ const DropdownBox = ({ listItem, onAddPackage, removeAutocompletePackage, onGetI
         {
           listItem.map((item) =>
             (<AutoCompleteItem
-              key={item.payload.id}
-              title={item.text}
-              description={_.truncate(item.payload.description, { length: 150 })}
-              onAddPackage={onAddPackage}
-              removeAutocompletePackage={removeAutocompletePackage}
-              onGetInfo={onGetInfo}
-              getLink={getLink}
+              key                       = {item.payload.id}
+              title                     = {item.text}
+              description               = {_.truncate(item.payload.description, { length: 150 })}
+              onAddPackage              = {onAddPackage}
+              removeAutocompletePackage = {removeAutocompletePackage}
+              onGetInfo                 = {onGetInfo}
+              getLink                   = {getLink}
             />)
             )
         }

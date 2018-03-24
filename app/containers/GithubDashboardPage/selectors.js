@@ -8,17 +8,17 @@ const selectGitDashboard = (state) => state.get('github-dashboard');
 
 const makeSelectCategory = () => createSelector(
   selectGitDashboard,
-  (gitDashboardState) => gitDashboardState.category
+  (gitDashboardState) => gitDashboardState.get('category')
 );
 
 const makeSelectSelectedCategory = () => createSelector(
   selectGitDashboard,
-  (gitDashboardState) => gitDashboardState.selectedCategory
+  (gitDashboardState) => gitDashboardState.get('selectedCategory')
 );
 
 const makeSelectGitData = () => createSelector(
   selectGitDashboard,
-  (gitDashboardState) => gitDashboardState.data,
+  (gitDashboardState) => gitDashboardState.get('data')
 );
 
 export {

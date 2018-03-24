@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import   React    , { Component } from 'react'            ;
+import   styled                   from 'styled-components';
+import   PropTypes                from 'prop-types'       ;
+import { Radio     }              from 'antd'             ;
 
-import RadioBtn from '../../components/RadioButton';
+const RadioButton = Radio.Button;
+const RadioGroup  = Radio.Group ;
 
 const FilterWrapper = styled.div`
   display: flex;
@@ -11,48 +13,29 @@ const FilterWrapper = styled.div`
   align-items: base-line;
 `;
 
-const FilterLabel = styled.h5`
-  font-size: 1rem;
-`;
-
 class Filter extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedOption: 'All',
+      selectedOption: 'ALL',
     };
   }
 
   onSelectFilter = (changeEvt) => {
-    this.setState({ selectedOption: changeEvt }, () => {
-      this.props.onChangeHandle(this.state.selectedOption);
-    });
+    this.setState({ selectedOption: changeEvt.target.value },
+      () => this.props.onChangeHandle(this.state.selectedOption)
+    );
   }
 
   render() {
     return (
       <FilterWrapper>
-        <FilterLabel>Filter</FilterLabel>
-        <RadioBtn
-          value="ALL"
-          selectedOption={this.state.selectedOption}
-          onChangeHandle={this.onSelectFilter}
-        />
-        <RadioBtn
-          value="TODO"
-          selectedOption={this.state.selectedOption}
-          onChangeHandle={this.onSelectFilter}
-        />
-        <RadioBtn
-          value="DOING"
-          selectedOption={this.state.selectedOption}
-          onChangeHandle={this.onSelectFilter}
-        />
-        <RadioBtn
-          value="DONE"
-          selectedOption={this.state.selectedOption}
-          onChangeHandle={this.onSelectFilter}
-        />
+        <RadioGroup onChange={this.onSelectFilter} defaultValue={this.state.selectedOption}>
+          <RadioButton value="ALL"  >ALL  </RadioButton>
+          <RadioButton value="TODO" >TODO </RadioButton>
+          <RadioButton value="DOING">DOING</RadioButton>
+          <RadioButton value="DONE" >DONE </RadioButton>
+        </RadioGroup>
       </FilterWrapper>
     );
   }

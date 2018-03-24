@@ -11,17 +11,16 @@ import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 
-import HomePage from 'containers/HomePage/Loadable';
-import FeaturePage from 'containers/FeaturePage/Loadable';
-import TodoAppPage from 'containers/TodoAppPage/Loadable';
-import GithubDashboard from 'containers/GithubDashboardPage';
-import NpmTrendDashBoard from 'containers/NPMDashBoard';
-import NPMDetailPage from 'containers/NPMDetailPage';
-import NotFoundPage from 'containers/NotFoundPage/Loadable';
-import Login from 'containers/Login';
-import Header from 'components/Header';
-import Footer from 'components/Footer';
-import PrivateRoute from 'components/PrivateRoute';
+import HomePage from "containers/HomePage/Loadable";
+import FeaturePage from "containers/FeaturePage/Loadable";
+import TodoAppPage from "containers/TodoAppPage/Loadable";
+import GithubDashboard from "containers/GithubDashboardPage";
+import NpmTrendDashBoard from "containers/NPMDashBoard";
+import NotFoundPage from "containers/NotFoundPage/Loadable";
+import Login from "containers/Login";
+import Header from "components/Header";
+import Footer from "components/Footer";
+import PrivateRoute from "components/PrivateRoute";
 
 const AppWrapper = styled.div`
   max-width: calc(768px + 16px * 2);
@@ -50,7 +49,6 @@ export default function App() {
         <Route exact path="/features/github-dashboard" component={GithubDashboard} />
         <Route path="/features/npm-trend-dashboard" component={NpmTrendDashBoard} />
         {/* <Route path="/features/npm-trend-dashboard/compare" component={TodoAppPage} /> */}
-        <Route path="/npm-detail-page" component={NPMDetailPage} />
         <Route path="/login" component={Login} />
         <Route path="" component={NotFoundPage} />
       </Switch>

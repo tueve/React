@@ -9,9 +9,10 @@
  * case YOUR_ACTION_CONSTANT:
  *   return state.set('yourStateVariable', true);
  */
-import _ from 'lodash';
-import { randomColor } from 'randomcolor';
-import { colors } from '../../utils/utils';
+import  _                      from 'lodash'           ;
+import {fromJS     , set, get} from 'immutable'        ;
+import {randomColor}           from 'randomcolor'      ;
+import {colors     }           from '../../utils/utils';
 
 import {
   INPUT_PACKAGE,
@@ -28,7 +29,7 @@ import {
 } from './constants';
 
 // The initial state of the App
-const initialState = {
+const initialState = fromJS({
   packageInput: '',
   autoCompleteData: {},
   compareList: [],
@@ -37,37 +38,41 @@ const initialState = {
   currentPackageInfo: [],
   packageSelected: '',
   compareMode: false,
-};
+});
 
 function NPMDashBoardReducer(state = initialState, action) {
+  const compareList = state.get('compareList');
   switch (action.type) {
     case INPUT_PACKAGE:
-      return {
-        ...state,
-        packageInput: action.input,
-      };
+      return state
+            .set('packageInput', action.input);
     case GET_AUTOCOMPLETE_PACKAGE:
-      return {
-        ...state,
-        autoCompleteData: _.get(action.datas, ['autocomplete_suggest', '0', 'options']),
-      };
+      return state
+            .set('autoCompleteData', _.get(action.datas, ['autocomplete_suggest', '0', 'options']))
     case REMOVE_AUTOCOMPLETE_PACKAGE:
-      return {
-        ...state,
-        autoCompleteData: [],
-      };
+      return state
+            .set('autoCompleteData', []);
     case ADD_PACKAGE:
-      return {
-        ...state,
-        compareList: [
-          ...state.compareList.filter((item) => item.name !== action.packageItem),
-          {
-            ...state.compareList.find((item) => item.name === action.packageItem),
-            ...state.currentPackageInfo.find((item) => item.name === action.packageItem),
-            name: action.packageItem,
-          },
-        ],
-      };
+      console.log(compareList.findIndex(item => item.name !== action.packageItem));
+      console.log(state
+                .update('compareList',
+                compareList.findIndex(item => item.name !== action.packageItem)
+            ));
+      return state;
+      //       .update('compareList',
+      //       compareList.findIndex(item)
+      //     )
+      // {
+      //   ...state,
+      //   compareList: [
+      //     ...state.compareList.filter((item) => item.name !== action.packageItem),
+      //     {
+      //       ...state.compareList.find((item) => item.name === action.packageItem),
+      //       ...state.currentPackageInfo.find((item) => item.name === action.packageItem),
+      //       name: action.packageItem,
+      //     },
+      //   ],
+      // };
     case UPDATE_INFO_COMPARELIST:
       return {
         ...state,
@@ -87,40 +92,30 @@ function NPMDashBoardReducer(state = initialState, action) {
         compareList: state.compareList.filter((item) => item.name !== action.packageItem),
       };
     case GET_PACKAGE_INFO:
-      return {
-        ...state,
-        currentPackageInfo: [
-          {
-            color: action.color,
-            name: action.packageName,
-            packageInfo: action.packageData,
-            downloadInfo: action.downloadData,
-          },
-        ],
-        loading: false,
-      };
+      return state
+            .set('currentPackageInfo', [
+              {
+                color: action.color,
+                name: action.packageName,
+                packageInfo: action.packageData,
+                downloadInfo: action.downloadData,
+              },
+            ])
+            .set('loading', false);
     case CLEAR_PACKAGE_INFO:
-      return {
-        ...state,
-        compareList: [],
-        loading: false,
-      };
+      return state
+            .set('compareList', [])
+            .set('loading', false);
     case FILTER_PACKAGE_INFO:
-      return {
-        ...state,
-        timeDuration: action.filter,
-      };
+      return state
+            .set('timeDuration', action.filter);
     case SELECT_PACKAGE:
-      return {
-        ...state,
-        packageSelected: action.packageName,
-        loading: true,
-      };
+      return  state
+            .set('packageSelected', action.packageName)
+            .set('loading', true);
     case TOGGLE_COMPARE_MODE:
-      return {
-        ...state,
-        compareMode: true,
-      };
+      return state
+            .set('compareMode', true);
     default:
       return state;
   }

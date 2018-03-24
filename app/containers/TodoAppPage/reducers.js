@@ -9,7 +9,7 @@
  * case YOUR_ACTION_CONSTANT:
  *   return state.set('yourStateVariable', true);
  */
-import { fromJS, get, set } from 'immutable';
+import { fromJS, get, set, update, Map,  merge } from 'immutable';
 import Utils from '../../utils/utils';
 
 import {
@@ -20,25 +20,25 @@ import {
 } from './constants';
 
 // The initial state of the App
-const initialState = {
+const initialState = fromJS({
   todoList: [{
-    id: Utils.getRandomId(),
-    name: 'React',
+    id         : Utils.getRandomId(),
+    name       : 'React',
     description: 'react app',
-    status: 'done',
+    status     : 'done',
   }, {
-    id: Utils.getRandomId(),
-    name: 'Redux',
+    id         : Utils.getRandomId(),
+    name       : 'Redux',
     description: 'Using redux',
-    status: 'doing',
+    status     : 'doing',
   }, {
-    id: Utils.getRandomId(),
-    name: 'React Native',
+    id         : Utils.getRandomId(),
+    name       : 'React Native',
     description: 'Using react Native',
-    status: 'todo',
+    status     : 'todo',
   }],
   filter: 'All',
-};
+});
 
 const newStatus = (status) => {
   switch (status) {
@@ -52,43 +52,37 @@ const newStatus = (status) => {
 };
 
 function todoReducer(state = initialState, action) {
+  const todoList = state.get('todoList');
+  const getIndex = (list, id=0) => list.findIndex((todo) => todo.get('id') === id);
+  const hasTodo  = (list, id) => list.some((item) => item.get('id') === action.id);
   switch (action.type) {
     case DELETE_TODO:
-      return { ...state, todoList: state.todoList.filter((item) => item.id !== action.id) };
+      return state
+        .set('todoList',
+          todoList
+            .filter((item) => item.get('id') !== action.id));
     case ADD_TODO:
-      return state.todoList.some((item) => item.id === action.id) ?
-      {
-        ...state,
-        todoList: [...state.todoList.filter((item) => item.id !== action.id),
-          { ...state.todoList.find((item) => item.id === action.id),
-            name: action.name,
-            description: action.description,
-            status: action.status,
-          },
-        ],
-      } :
-      {
-        ...state,
-        todoList: [...state.todoList, {
-          name: action.name,
-          description: action.description,
-          id: Utils.getRandomId(),
-          status: 'todo',
-        }],
-      };
+      return state
+        .set('todoList',
+          todoList.update(!action.id ? todoList.size : getIndex(todoList, action.id),
+            (todo = Map({})) => todo.merge({
+              id: action.id || Utils.getRandomId(),
+              name: action.name,
+              description: action.description,
+              status: action.id ? todo.get('status') : 'todo',
+            })));
     case HANDLE_TODO:
-      return {
-        ...state,
-        todoList: [...state.todoList.filter((item) => item.id !== action.id), {
-          ...state.todoList.find((item) => item.id === action.id),
-          status: newStatus(action.status),
-        }],
-      };
+      return state
+        .set('todoList',
+          todoList.setIn(
+            [
+              todoList.findIndex((todo) => todo.get('id') === action.id),
+              'status',
+            ],
+            newStatus(action.status)));
     case FILTER_TODO:
-      return {
-        ...state,
-        filter: action.filter,
-      };
+      return state
+        .set('filter', action.filter);
     default:
       return state;
   }

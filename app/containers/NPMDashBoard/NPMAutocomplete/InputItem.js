@@ -15,18 +15,19 @@ class InputComponent extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    !this.props.hasInput && this.setState({ inputText: '' });
+    !this.props.hasInput &&
+    this.setState({ inputText: '' });
   }
 
   render() {
     return (
       <div className="col-12">
         <input
-          className="form-control"
-          value={this.state.inputText}
-          placeholder="input npm package"
-          onChange={(evt) => this.onChangeHandle(evt)}
-          onFocus={(evt) => this.onChangeHandle(evt)}
+          className   = "form-control"
+          value       = {this.state.inputText}
+          placeholder = "input npm package"
+          onChange    = {(evt) => this.onChangeHandle(evt)}
+          onFocus     = {(evt) => this.onChangeHandle(evt)}
         />
       </div>
     );

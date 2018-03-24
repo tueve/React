@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import React     from 'react'            ;
+import styled    from 'styled-components';
+import PropTypes from 'prop-types'       ;
 
 const InputWrapper = styled.div`
   border: 1px solid black;
