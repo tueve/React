@@ -9,5 +9,5 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
-export const CHANGE_CATEGORY = 'GithubDashboard/CHANGE_CATEGORY';
+export const CHANGE_CATEGORY    = 'GithubDashboard/CHANGE_CATEGORY';
 export const LOAD_REPOS_SUCCESS = 'LOAD_REPOS_SUCCESS';

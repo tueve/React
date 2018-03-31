@@ -9,7 +9,6 @@
  * case YOUR_ACTION_CONSTANT:
  *   return state.set('yourStateVariable', true);
  */
-import { fromJS } from 'immutable';
 
 import {
   CHANGE_CATEGORY,
@@ -18,9 +17,9 @@ import {
 
 // The initial state of the App
 const initialState = {
-  category: ['All', 'Javascript', 'Php', 'Python', 'Java', 'C#'],
+  category        : ['All', 'Javascript', 'Php', 'Python', 'Java', 'C#'],
   selectedCategory: 'All',
-  data: {},
+  data            : {},
 };
 
 function githubDashBoardReducer(state = initialState, action) {

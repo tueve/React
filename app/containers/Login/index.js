@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
-import Anime from 'react-anime';
-import { Redirect } from 'react-router-dom';
+import  React   , {Component} from 'react'            ;
+import  styled                from 'styled-components';
+import  Anime                 from 'react-anime'      ;
+import {Redirect}             from 'react-router-dom' ;
 
-import { Button } from 'antd';
+import {Button} from 'antd';
 
-import { createStructuredSelector } from 'reselect';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
+import {createStructuredSelector} from 'reselect'   ;
+import {compose                 } from 'redux'      ;
+import {connect                 } from 'react-redux';
 
 import SocialButton from '../../components/SocialButton';
 
@@ -21,7 +21,7 @@ import {
 } from '../App/selectors';
 
 const SocialButtonWrapper = styled.div`
-  display: flex;
+  display       : flex;
   flex-direction: column;
 `;
 
@@ -30,12 +30,12 @@ const GoogleLogin = styled(SocialButton)`
 
   &:before {
     border-right: #BB3F30 1px solid;
-    background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_google.png') 6px 6px no-repeat;
+    background  : url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_google.png') 6px 6px no-repeat;
   }
 
   &:hover,
   &:focus {
-    background: #E74B37;
+    background      : #E74B37;
     background-image: linear-gradient(#E74B37, #F94B3F);
   }
 `;
@@ -48,7 +48,7 @@ const FacebookLogin = styled(SocialButton)`
 
   &:before {
     border-right: #364e92 1px solid;
-    background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_facebook.png') 6px 6px no-repeat;
+    background  : url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_facebook.png') 6px 6px no-repeat;
   }
 
   &:hover,
@@ -64,15 +64,15 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      googleKey: Math.random(),
-      facebookKey: Math.random(),
+      googleKey         : Math.random(),
+      facebookKey       : Math.random(),
       redirectToReferrer: false,
     };
   }
 
   onLoginFailure = () => {
     this.setState({
-      googleKey: Math.random(),
+      googleKey  : Math.random(),
       facebookKey: Math.random(),
     });
   }
@@ -98,23 +98,23 @@ class Login extends Component {
       <div className="row justify-content-center">
         <SocialButtonWrapper>
           <GoogleLogin
-            provider='google'
-            appId='434517084355-n3vl428kgf62o8vvqf5ohkss5u44h35b.apps.googleusercontent.com'
-            onLoginSuccess={this.onLoginSuccessHandle}
-            onLoginFailure={this.onLoginFailure}
-            onLogoutSuccess={this.props.onLogoutHandle}
-            key={this.state.googleKey}
+            provider        = 'google'
+            appId           = '434517084355-n3vl428kgf62o8vvqf5ohkss5u44h35b.apps.googleusercontent.com'
+            onLoginSuccess  = {this.onLoginSuccessHandle}
+            onLoginFailure  = {this.onLoginFailure}
+            onLogoutSuccess = {this.props.onLogoutHandle}
+            key             = {this.state.googleKey}
           >
             Login with Google
           </GoogleLogin>
 
           <FacebookLogin
-            provider='facebook'
-            appId='2098615787049312'
-            onLoginSuccess={this.onLoginSuccessHandle}
-            onLoginFailure={this.onLoginFailure}
-            onLogoutSuccess={this.props.onLogoutHandle}
-            key={this.state.facebookKey}
+            provider        = 'facebook'
+            appId           = '2098615787049312'
+            onLoginSuccess  = {this.onLoginSuccessHandle}
+            onLoginFailure  = {this.onLoginFailure}
+            onLogoutSuccess = {this.props.onLogoutHandle}
+            key             = {this.state.facebookKey}
           >
             Login with Facebook
           </FacebookLogin>

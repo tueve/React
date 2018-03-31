@@ -20,13 +20,13 @@ const DropdownBox = ({ listItem, onAddPackage, removeAutocompletePackage, onGetI
         {
           listItem.map((item) =>
             (<AutoCompleteItem
-              key={item.payload.id}
-              title={item.text}
-              description={_.truncate(item.payload.description, { length: 150 })}
-              onAddPackage={onAddPackage}
-              removeAutocompletePackage={removeAutocompletePackage}
-              onGetInfo={onGetInfo}
-              getLink={getLink}
+              key                       = {item.payload.id}
+              title                     = {item.text}
+              description               = {_.truncate(item.payload.description, { length: 150 })}
+              onAddPackage              = {onAddPackage}
+              removeAutocompletePackage = {removeAutocompletePackage}
+              onGetInfo                 = {onGetInfo}
+              getLink                   = {getLink}
             />)
             )
         }

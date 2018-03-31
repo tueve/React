@@ -4,12 +4,12 @@ import { Icon } from 'antd';
 import { Link } from 'react-router-dom';
 
 const CompareName = styled.p`
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 0 5px;
-  display: inline-block;
-  background-color:${(props) => props.color};
-  color: white;
+  border          : 1px solid black;
+  border-radius   : 5px;
+  padding         : 0 5px;
+  display         : inline-block;
+  background-color: ${(props) => props.color};
+  color           : white;
 `;
 
 const IconWrapper = styled(Icon)`

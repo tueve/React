@@ -8,10 +8,10 @@ const CompareList = ({ compareList, onRemovePackage }) => (
     {
       compareList.length && compareList.map((item) =>
         (<CompareItem
-          key={Utils.getRandomId()}
-          name={item.name}
-          color={item.color}
-          onRemovePackage={onRemovePackage}
+          key             = {Utils.getRandomId()}
+          name            = {item.name}
+          color           = {item.color}
+          onRemovePackage = {onRemovePackage}
         />)
       )
     }

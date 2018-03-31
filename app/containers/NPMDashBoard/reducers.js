@@ -29,14 +29,14 @@ import {
 
 // The initial state of the App
 const initialState = {
-  packageInput: '',
-  autoCompleteData: {},
-  compareList: [],
-  timeDuration: 6,
-  loading: false,
+  packageInput      : '',
+  autoCompleteData  : {},
+  compareList       : [],
+  timeDuration      : 6,
+  loading           : false,
   currentPackageInfo: [],
-  packageSelected: '',
-  compareMode: false,
+  packageSelected   : '',
+  compareMode       : false,
 };
 
 function NPMDashBoardReducer(state = initialState, action) {

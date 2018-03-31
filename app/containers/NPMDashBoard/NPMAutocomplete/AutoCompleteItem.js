@@ -11,8 +11,8 @@ const AutoCompleteItemWrapper = styled.div`
 `;
 
 const ItemTitle = styled.span`
-  font-size: 1rem;
-  font-weight: 600;
+  font-size   : 1rem;
+  font-weight : 600;
   margin-right: 10px;
 `;
 
@@ -53,10 +53,10 @@ const AutoCompleteItem = ({ title, description, onAddPackage, removeAutocomplete
           to={getLink(title)}
         >
           <Button
-            type="primary"
-            className="m-2"
-            size="small"
-            onClick={() => handleAddEvt(onAddPackage, removeAutocompletePackage, title)}
+            type      = "primary"
+            className = "m-2"
+            size      = "small"
+            onClick   = {() => handleAddEvt(onAddPackage, removeAutocompletePackage, title)}
           >
             Add to compare list<Icon type="right" />
           </Button>

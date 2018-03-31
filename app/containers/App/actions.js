@@ -37,7 +37,7 @@ export function loadRepos() {
 /**
  * Dispatched when the repositories are loaded by the request saga
  *
- * @param  {array} datas The repository data
+ * @param  {datas} array The repository data
  *
  * @return {object}      An action object with a type of LOAD_REPOS_SUCCESS passing the datas
  */
@@ -51,7 +51,7 @@ export function reposLoaded(datas) {
 /**
  * Dispatched when loading the repositories fails
  *
- * @param  {object} error The error
+ * @param  {error} object The error
  *
  * @return {object}       An action object with a type of LOAD_REPOS_ERROR passing the error
  */
@@ -63,11 +63,11 @@ export function repoLoadingError(error) {
 }
 
 /**
- * Dispatched when loading the repositories fails
+ * Dispatched when login
  *
- * @param  {object} error The error
+ * @param  {userInfo} object Info of user after login
  *
- * @return {object}       An action object with a type of LOAD_REPOS_ERROR passing the error
+ * @return {object}       An action object with a type of LOGIN
  */
 export function login(userInfo) {
   return {
@@ -78,11 +78,9 @@ export function login(userInfo) {
 
 
 /**
- * Dispatched when loading the repositories fails
+ * Dispatched when logout
  *
- * @param  {object} error The error
- *
- * @return {object}       An action object with a type of LOAD_REPOS_ERROR passing the error
+ * @return {object}   An action object with a type of LOGOUT passing the error
  */
 export function logout() {
   return {

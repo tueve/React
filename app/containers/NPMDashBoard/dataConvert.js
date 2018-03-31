@@ -13,7 +13,23 @@ const metaDataPackage = (packageData) => packageData.map((item) => {
 
   const { final: finalScore, detail: { quality, popularity, maintenance } } = score;
 
-  return { description, name, version, keywords, author, links, downloads, homepage, starsCount, issues, contributors, finalScore, quality, popularity, maintenance };
+  return {
+            description,
+            name,
+            version,
+            keywords,
+            author,
+            links,
+            downloads,
+            homepage,
+            starsCount,
+            issues,
+            contributors,
+            finalScore,
+            quality,
+            popularity,
+            maintenance
+          };
 });
 
 export default metaDataPackage;
