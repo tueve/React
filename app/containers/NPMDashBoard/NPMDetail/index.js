@@ -4,8 +4,8 @@ import { Button } from 'antd';
 import styled from 'styled-components';
 
 const LabelItem = styled.span`
-  font-size: 1rem;
-  font-weight: 600;
+  font-size   : 1rem;
+  font-weight : 600;
   margin-right: 10px;
 `;
 
@@ -27,11 +27,11 @@ const ListItem = styled.ul`
 `;
 
 const Avatar = styled.div`
-  background-image: url(${(props) => props.backgroundImage});
-  background-size: cover;
+  background-image   : url(${(props) => props.backgroundImage});
+  background-size    : cover;
   background-position: center;
-  width: 300px;
-  height: 300px;
+  width              : 300px;
+  height             : 300px;
 `;
 
 const NPMDetail = ({ 0:
@@ -110,8 +110,8 @@ const NPMDetail = ({ 0:
               <p><LabelItem>Maintainers</LabelItem> 12</p>
             </div>
             <div>
-              <p><LabelItem>Daily downloads:</LabelItem> {downloads[0]}</p>
-              <p><LabelItem>Weekly downloads:</LabelItem>{downloads[1]}</p>
+              <p><LabelItem>Daily   downloads:</LabelItem> {downloads[0]}</p>
+              <p><LabelItem>Weekly  downloads:</LabelItem> {downloads[1]}</p>
               <p><LabelItem>Monthly downloads:</LabelItem> {downloads[2]}</p>
             </div>
           </div>

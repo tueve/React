@@ -15,7 +15,9 @@ import { makeSelectSelectedCategory } from 'containers/GithubDashboardPage/selec
 export function* getRepos() {
   // Select category from store
   const category = yield select(makeSelectSelectedCategory());
-  const requestURL = `https://api.github.com/search/repositories?q=+language:${category==='All' ? '' : category}&sort=stars&order=desc&page=1&per_page=30`;
+  const requestURL = `https://api.github.com/search/repositories?q=+language:${category==='All' ?
+                        '' :
+                        category}&sort=stars&order=desc&page=1&per_page=30`;
   try {
     // Call our request helper (see 'utils/request')
     const repos = yield call(request, requestURL);

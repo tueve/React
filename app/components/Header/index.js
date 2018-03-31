@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FormattedMessage } from 'react-intl';
+// import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
@@ -44,10 +44,10 @@ class Header extends React.PureComponent { // eslint-disable-line react/prefer-s
         </A>
         <NavBar>
           <HeaderLink to="/">
-            <FormattedMessage {...messages.home} />
+            Home
           </HeaderLink>
           <HeaderLink to="/features">
-            <FormattedMessage {...messages.features} />
+            Features
           </HeaderLink>
           <AuthButton />
         </NavBar>

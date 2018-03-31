@@ -20,11 +20,11 @@ import {
 } from './constants';
 
 /**
- * Changes the input field of the form
+ * Changes the category
  *
- * @param  {name} name The new text of the input field
+ * @param  {category} string The neame of the category
  *
- * @return {object}    An action object with a type of CHANGE_USERNAME
+ * @return {object}    An action object with a type of CHANGE_CATEGORY
  */
 export function changeCategory(category) {
   return {

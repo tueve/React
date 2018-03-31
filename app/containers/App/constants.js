@@ -9,9 +9,9 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
-export const LOAD_REPOS = 'LOAD_REPOS';
+export const LOAD_REPOS         = 'LOAD_REPOS';
 export const LOAD_REPOS_SUCCESS = 'LOAD_REPOS_SUCCESS';
-export const LOAD_REPOS_ERROR = 'LOAD_REPOS_ERROR';
-export const LOGIN = 'LOGIN';
-export const LOGOUT = 'LOGOUT';
-export const DEFAULT_LOCALE = 'en';
+export const LOAD_REPOS_ERROR   = 'LOAD_REPOS_ERROR';
+export const LOGIN              = 'LOGIN';
+export const LOGOUT             = 'LOGOUT';
+

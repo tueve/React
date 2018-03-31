@@ -9,7 +9,7 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
-export const ADD_TODO = 'ADD';
+export const ADD_TODO    = 'ADD';
 export const DELETE_TODO = 'DELETE';
 export const HANDLE_TODO = 'HANDLE';
 export const FILTER_TODO = 'FILTER';
