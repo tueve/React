@@ -16,14 +16,18 @@ const getDate = (durationTime) => {
   const today = new Date();
   let dateBefore = new Date(today);
   dateBefore = new Date(dateBefore.setMonth(dateBefore.getMonth() - durationTime));
-  return { startDate: today, endDate: dateBefore };
+  return { startDate: new Date(today.setDate(today.getDate()-1)), endDate: dateBefore };
 };
 
 const formatTime = (dateInput) =>
     _.map(dateInput, (date) =>
       `${date.getUTCFullYear()}-${date.getUTCMonth() + 1}-${date.getUTCDate()}`);
 
-const cleanUrl = (packageName) => packageName.replace(/\//ig, '-').replace(/[^a-zA-Z0-9-]+/g, '');
+const cleanUrl = (packageName) => {
+  const isRootPackage = packageName.indexOf('/') !== -1 ? packageName.indexOf('/') : false;
+  const rootPackage = isRootPackage ? packageName.substr(0,isRootPackage) : packageName;
+  return rootPackage.replace(/\//ig, '-').replace(/[^a-zA-Z0-9-]+/g, '');
+};
 
 /**
  * Autocomplete NPM package request/response handler
@@ -54,19 +58,20 @@ export function* getRepos() {
   }
 }
 
-
 /**
  * NPM download data repos request/response handler
  */
 
 function* getNPMDownloadData(action) {
+  const packageInfo = yield select(makeSelectPackageInfo());
   const { filter: duration, name = '' } = yield select(makeSelectPackageInfo());
   const packageName = action.packageName || name;
   const getTimeDataUrl = (time) =>
-    `http://proxy.npmtrends.com/?url=https://api.npmjs.org/downloads/range/${time[1]}:${time[0]}/${cleanUrl(packageName)}`;
+    `http://proxy.npmtrends.com/?url=https://api.npmjs.org/downloads/range/${time[1]}:${time[0]}/${packageName}`;
 
   const urlTimeData = _.flowRight(getTimeDataUrl, formatTime, getDate)(duration);
   const urlNPMInfo = `https://api.npms.io/v2/package/${cleanUrl(packageName)}`;
+  const color = randomColor({ luminosity: 'dark' });
   try {
     // Call our request helper (see 'utils/request')
     // const repos = yield call(request, urlTimeData);
@@ -74,11 +79,10 @@ function* getNPMDownloadData(action) {
       call(request, urlTimeData),
       call(request, urlNPMInfo),
     ]);
-    const color = randomColor({ luminosity: 'dark' });
     yield put(getPackageInfo(packageName, downloadData, packageData, color));
     const compareList = yield select(makeSelectCompareList());
     if (compareList.find((item) => item.name === packageName)) {
-      yield put(updateComparelistInfo(packageName, downloadData, packageData, color));
+      yield put(updateComparelistInfo(packageName, downloadData, packageData));
     }
   } catch (err) {
     yield put(repoLoadingError(err));

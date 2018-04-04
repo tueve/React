@@ -35,6 +35,7 @@ import {
   filterPackageInfo,
   selectPackage,
   toggleCompareMode,
+  toggleDetailMode,
  } from './action';
 import reducer     from './reducers'   ;
 import saga        from './saga'       ;
@@ -98,8 +99,9 @@ export class NPMDashBoard extends React.Component { // eslint-disable-line react
   }
 
   onFilterHandle = (filter) => {
+    const { location: { hash, search } } = this.props;
     this.props.onFilter(filter);
-    this.props.selectPackage(this.props.data.name);
+    search.replace('?', '').split('&').map(item => this.props.selectPackage(item));
   }
 
   onRemoveHandle = (packageItem) => {
@@ -123,6 +125,8 @@ export class NPMDashBoard extends React.Component { // eslint-disable-line react
 
   onCompareHandle = () => {
     this.props.toggleCompare();
+    const compareList = this.props.compareList.map(item => item.name);
+    compareList.map(item => this.props.selectPackage(item));
   }
 
   render() {
@@ -145,6 +149,8 @@ export class NPMDashBoard extends React.Component { // eslint-disable-line react
               onAddPackage              = {this.onAddHandle}
               onGetInfo                 = {this.props.selectPackage}
               getLink                   = {this.getLink}
+              toggleDetail              = {this.props.toggleDetail}
+              clearPackageInfo          = {this.props.clearPackageInfo}
             />
           </div>
           {
@@ -229,6 +235,7 @@ const mapDispatchToProps = (dispatch) => ({
   onFilter                 : (filter) => dispatch(filterPackageInfo(filter)),
   selectPackage            : (packageName) => dispatch(selectPackage(packageName)),
   toggleCompare            : () => dispatch(toggleCompareMode()),
+  toggleDetail             : () => dispatch(toggleDetailMode()),
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);

@@ -20,7 +20,13 @@ const getData = (key) => (data) => _.get(data, key);
 
 const getValue = (key) => (dataSet) => dataSet.map(getData(key));
 
-const getDataSet = (key) => (dataSet) => (duration) => _.flow(getData('downloads'), filterData(duration), getValue(key))(dataSet);
+const getDataSet = (key) =>
+                      (dataSet) =>
+                        (duration) =>
+                          _.flow(
+                              getData('downloads'),
+                              filterData(duration),
+                              getValue(key))(dataSet);
 
 const getDataChart = (dataSet, duration, type) => dataSet.reduce(
   (acc, item) => {

@@ -29,12 +29,13 @@ const ItemDescription = styled.span`
   font-weight: 400;
 `;
 
-const handleAddEvt = (onAddPackage, removeAutocompletePackage, title) => {
+const handleAddEvt = (onAddPackage, removeAutocompletePackage,  title, toggleDetail) => {
   onAddPackage(title);
   removeAutocompletePackage();
+  toggleDetail && toggleDetail();
 };
 
-const AutoCompleteItem = ({ title, description, onAddPackage, removeAutocompletePackage, onGetInfo, getLink }) => (
+const AutoCompleteItem = ({ title, description, onAddPackage, removeAutocompletePackage, onGetInfo, getLink, toggleDetail }) => (
   <div>
     <AutoCompleteItemWrapper className="col-12 pl-2 pr-2 pt-2" >
       <ItemTitle>{ title }</ItemTitle>
@@ -45,7 +46,11 @@ const AutoCompleteItem = ({ title, description, onAddPackage, removeAutocomplete
             search: `?${title}`,
           }}
         >
-          <Button type="primary" className="m-2" size="small" onClick={() => handleAddEvt(onGetInfo, removeAutocompletePackage, title)} >
+          <Button
+            type="primary"
+            className="m-2"
+            size="small"
+            onClick={() => handleAddEvt(onGetInfo, removeAutocompletePackage, title, toggleDetail)} >
             Get package info<Icon type="right" />
           </Button>
         </Link>

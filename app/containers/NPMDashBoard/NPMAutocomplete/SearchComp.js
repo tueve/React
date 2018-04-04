@@ -45,7 +45,7 @@ class SearchComponent extends Component {
   }
 
   render() {
-    const { removeAutocompletePackage, autoCompleteResult, hasInput, getLink } = this.props;
+    const { removeAutocompletePackage, autoCompleteResult, hasInput, getLink, toggleDetail } = this.props;
     return (
       <div>
         <InputItem
@@ -59,6 +59,7 @@ class SearchComponent extends Component {
             removeAutocompletePackage = {removeAutocompletePackage}
             onGetInfo                 = {this.onAddPackage(this.props.onGetInfo)}
             getLink                   = {getLink}
+            toggleDetail              = {toggleDetail}
           />}
       </div>
     )
