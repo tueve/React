@@ -28,6 +28,7 @@ import {
   SELECT_PACKAGE,
   UPDATE_INFO_COMPARELIST,
   TOGGLE_COMPARE_MODE,
+  TOGGLE_DETAIL_MODE,
 } from './constants';
 
 /**
@@ -131,7 +132,6 @@ export function clearPackageInfo() {
   };
 }
 
-
 /**
  * Get package info data from API
  *
@@ -215,5 +215,17 @@ export function updateComparelistInfo(packageName, downloadData, packageData, co
 export function toggleCompareMode() {
   return {
     type: TOGGLE_COMPARE_MODE,
+  };
+}
+
+/**
+ * Toggle detail mode
+ *
+ * @return {object}    An action object with a type of TOGGLE_DETAIL_MODE
+ */
+
+export function toggleDetailMode() {
+  return {
+    type: TOGGLE_DETAIL_MODE,
   };
 }

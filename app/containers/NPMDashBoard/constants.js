@@ -22,4 +22,6 @@ export const FILTER_PACKAGE_INFO         = 'NPMDashBoard/FILTER_PACKAGE_INFO';
 export const SELECT_PACKAGE              = 'NPMDashBoard/SELECT_PACKAGE';
 export const UPDATE_INFO_COMPARELIST     = 'NPMDashBoard/UPDATE_INFO_COMPARELIST';
 export const TOGGLE_COMPARE_MODE         = 'NPMDashBoard/TOGGLE_COMPARE_MODE';
+export const TOGGLE_DETAIL_MODE          = 'NPMDashBoard/TOGGLE_DETAIL_MODE';
+
 

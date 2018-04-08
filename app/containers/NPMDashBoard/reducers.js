@@ -25,6 +25,7 @@ import {
   SELECT_PACKAGE,
   UPDATE_INFO_COMPARELIST,
   TOGGLE_COMPARE_MODE,
+  TOGGLE_DETAIL_MODE
 } from './constants';
 
 // The initial state of the App
@@ -75,7 +76,7 @@ function NPMDashBoardReducer(state = initialState, action) {
           ...state.compareList.filter((item) => item.name !== action.packageName),
           {
             ...state.compareList.find((item) => item.name === action.packageName),
-            color: action.color,
+            color: randomColor({ luminosity: 'dark' }),
             packageInfo: action.packageData,
             downloadInfo: action.downloadData,
           },
@@ -91,7 +92,7 @@ function NPMDashBoardReducer(state = initialState, action) {
         ...state,
         currentPackageInfo: [
           {
-            color: action.color,
+            color: !state.currentPackageInfo[0] ? action.color : state.currentPackageInfo[0].color,
             name: action.packageName,
             packageInfo: action.packageData,
             downloadInfo: action.downloadData,
@@ -100,11 +101,7 @@ function NPMDashBoardReducer(state = initialState, action) {
         loading: false,
       };
     case CLEAR_PACKAGE_INFO:
-      return {
-        ...state,
-        compareList: [],
-        loading: false,
-      };
+      return initialState;
     case FILTER_PACKAGE_INFO:
       return {
         ...state,
@@ -120,6 +117,11 @@ function NPMDashBoardReducer(state = initialState, action) {
       return {
         ...state,
         compareMode: true,
+      };
+    case TOGGLE_DETAIL_MODE:
+      return {
+        ...state,
+        compareMode: false,
       };
     default:
       return state;

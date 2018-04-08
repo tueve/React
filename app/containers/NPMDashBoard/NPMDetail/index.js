@@ -94,10 +94,10 @@ const NPMDetail = ({ 0:
           </div>
           <div className="col-12 col-sm-6">
             <ListItem>
-              <li><Link to={links.homepage} target="_blank"><LabelItem>homepage</LabelItem></Link></li>
-              <li><Link to={links.repository} target="_blank"><LabelItem>github</LabelItem></Link></li>
-              <li><Link to={links.npm} target="_blank"><LabelItem>npm</LabelItem></Link></li>
-              <li><Link to={links.bugs} target="_blank"><LabelItem>bugs</LabelItem></Link></li>
+              {links.homepage && <li><Link to={links.homepage || '#'} target="_blank"><LabelItem>homepage</LabelItem></Link></li>}
+              {links.repository && <li><Link to={links.repository  || '#'} target="_blank"><LabelItem>github</LabelItem></Link></li>}
+              {links.npm && <li><Link to={links.npm  || '#'} target="_blank"><LabelItem>npm</LabelItem></Link></li>}
+              {links.bugs && <li><Link to={links.bugs  || '#'} target="_blank"><LabelItem>bugs</LabelItem></Link></li>}
             </ListItem>
           </div>
         </ContentWrapper>
