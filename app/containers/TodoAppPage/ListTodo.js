@@ -1,3 +1,5 @@
+/** @format */
+
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
@@ -12,25 +14,25 @@ const ListWrapper = styled.div`
 
 const List = ({ listTodo = [], onAction, onEditHandle }) => (
   <ListWrapper>
-    {
-      listTodo.sort((todoA, todoB) => todoA.id > todoB.id).map(
-        (item) =>
-          <TodoItem
-            key={item.id}
-            id={item.id}
-            name={item.name}
-            description={item.description}
-            status={item.status}
-            onAction={onAction}
-            onEdit={onEditHandle}
-          />)
-    }
+    {listTodo
+      .sort((todoA, todoB) => todoA.id > todoB.id)
+      .map(item => (
+        <TodoItem
+          key         = {item.id}
+          id          = {item.id}
+          name        = {item.name}
+          description = {item.description}
+          status      = {item.status}
+          onAction    = {onAction}
+          onEdit      = {onEditHandle}
+        />
+      ))}
   </ListWrapper>
 );
 
 List.propTypes = {
-  listTodo: PropTypes.array,
-  onAction: PropTypes.object,
+  listTodo    : PropTypes.array,
+  onAction    : PropTypes.object,
   onEditHandle: PropTypes.func,
 };
 

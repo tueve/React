@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
@@ -13,7 +15,6 @@ const ConfigWrapper = styled.div`
   width: 100vw;
   height: 100vh;
   z-index: 2;
-
 `;
 
 const TodoConfigOverlay = styled.div`
@@ -22,7 +23,7 @@ const TodoConfigOverlay = styled.div`
   width: 100vw;
   height: 100vh;
   position: fixed;
-  background-color: rgba(0,0,0,.7);
+  background-color: rgba(0, 0, 0, 0.7);
   z-index: 1;
 `;
 
@@ -37,7 +38,7 @@ const TodoConfigWrapper = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   background-color: white;
   width: 50%;
   z-index: 2;
@@ -69,7 +70,8 @@ const TodoClose = styled.span`
   }
 `;
 
-class TodoConfig extends Component { // eslint-disable-line react/prefer-stateless-function
+class TodoConfig extends Component {
+  // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
     this.state = {
@@ -85,9 +87,14 @@ class TodoConfig extends Component { // eslint-disable-line react/prefer-statele
     });
   }
 
-  onChangeName = (name) => this.setState({ name });
-  onChangeDescription = (description) => this.setState({ description });
-  onAdder = () => this.props.onAdder({ name: this.state.name, description: this.state.description, id: this.props.todo.id || false })
+  onChangeName = name => this.setState({ name });
+  onChangeDescription = description => this.setState({ description });
+  onAdder = () =>
+    this.props.onAdder({
+      name: this.state.name,
+      description: this.state.description,
+      id: this.props.todo.id || false,
+    });
 
   render() {
     return (
@@ -99,21 +106,35 @@ class TodoConfig extends Component { // eslint-disable-line react/prefer-statele
             <div className="row">
               <div className="col-12">
                 <TodoLabel>Todo Title</TodoLabel>
-                <InputField onChangeHandle={this.onChangeName} value={this.state.name} />
+                <InputField
+                  onChangeHandle={this.onChangeName}
+                  value={this.state.name}
+                />
               </div>
               <div className="col-12 mb-3">
                 <TodoLabel>Todo description</TodoLabel>
-                <InputField onChangeHandle={this.onChangeDescription} value={this.state.description} />
+                <InputField
+                  onChangeHandle={this.onChangeDescription}
+                  value={this.state.description}
+                />
               </div>
               <div className="col-12">
-                <Button onClick={() => this.state.name && this.state.description && this.onAdder() && this.props.onClose()}>ADD</Button>
+                <Button
+                  onClick={() =>
+                    this.state.name &&
+                    this.state.description &&
+                    this.onAdder() &&
+                    this.props.onClose()
+                  }
+                >
+                  ADD
+                </Button>
               </div>
             </div>
           </TodoContent>
           <TodoClose onClick={() => this.props.onClose()}>x</TodoClose>
         </TodoConfigWrapper>
       </ConfigWrapper>
-
     );
   }
 }
