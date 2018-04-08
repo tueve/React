@@ -58,13 +58,15 @@ function NPMDashBoardReducer(state = initialState, action) {
         autoCompleteData: [],
       };
     case ADD_PACKAGE:
+      const packageInCompareList = state.compareList.find((item) => item.name === action.packageItem);
       return {
         ...state,
         compareList: [
           ...state.compareList.filter((item) => item.name !== action.packageItem),
           {
-            ...state.compareList.find((item) => item.name === action.packageItem),
+            ...packageInCompareList,
             ...state.currentPackageInfo.find((item) => item.name === action.packageItem),
+            color: packageInCompareList ? packageInCompareList.color : randomColor({ luminosity: 'dark' }),
             name: action.packageItem,
           },
         ],
@@ -76,7 +78,6 @@ function NPMDashBoardReducer(state = initialState, action) {
           ...state.compareList.filter((item) => item.name !== action.packageName),
           {
             ...state.compareList.find((item) => item.name === action.packageName),
-            color: randomColor({ luminosity: 'dark' }),
             packageInfo: action.packageData,
             downloadInfo: action.downloadData,
           },
