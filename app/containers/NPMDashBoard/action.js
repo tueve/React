@@ -1,4 +1,5 @@
-/*
+/**
+ * /*
  * Github Dashboard Actions
  *
  * Actions change things in your application
@@ -13,6 +14,8 @@
  *    export function yourAction(var) {
  *        return { type: YOUR_ACTION_CONSTANT, var: var }
  *    }
+ *
+ * @format
  */
 
 import {
@@ -27,8 +30,10 @@ import {
   FILTER_PACKAGE_INFO,
   SELECT_PACKAGE,
   UPDATE_INFO_COMPARELIST,
+  SET_CURRENT_PACKAGE,
   TOGGLE_COMPARE_MODE,
   TOGGLE_DETAIL_MODE,
+  GET_README,
 } from './constants';
 
 /**
@@ -72,19 +77,18 @@ export function removeAutocompletePackage() {
   };
 }
 
-
 /**
  * Add package to comparelist
  *
- * @param  {packageItem} string Name of package that add to compare list
+ * @param  {packageName} string Name of package that add to compare list
  *
  * @return {object}    An action object with a type of ADD_PACKAGE
  */
 
-export function addPackage(packageItem) {
+export function addPackage(packageName) {
   return {
     type: ADD_PACKAGE,
-    packageItem,
+    packageName,
   };
 }
 
@@ -96,10 +100,10 @@ export function addPackage(packageItem) {
  * @return {object}    An action object with a type of REMOVE_PACKAGE
  */
 
-export function removePackage(packageItem) {
+export function removePackage(packageName) {
   return {
     type: REMOVE_PACKAGE,
-    packageItem,
+    packageName,
   };
 }
 
@@ -169,7 +173,6 @@ export function filterPackageInfo(filter) {
   };
 }
 
-
 /**
  * Choose the package to get detail
  *
@@ -182,27 +185,6 @@ export function selectPackage(packageName) {
   return {
     type: SELECT_PACKAGE,
     packageName,
-  };
-}
-
-/**
- * Update comparelist information
- *
- * @param  {packageName} string Name of package that add to compare list
- * @param  {downloadData} object downloading data of the package
- * @param  {packageData} object data of the package
- * @param  {color} string color of the package
- *
- * @return {object}    An action object with a type of UPDATE_INFO_COMPARELIST
- */
-
-export function updateComparelistInfo(packageName, downloadData, packageData, color) {
-  return {
-    type: UPDATE_INFO_COMPARELIST,
-    packageName,
-    downloadData,
-    packageData,
-    color,
   };
 }
 
@@ -227,5 +209,35 @@ export function toggleCompareMode() {
 export function toggleDetailMode() {
   return {
     type: TOGGLE_DETAIL_MODE,
+  };
+}
+
+/**
+ * Set current package to show
+ *
+ * @param  {packageName} string Name of package to select *
+ *
+ * @return {object}    An action object with a type of TOGGLE_DETAIL_MODE
+ */
+
+export function setCurrentPackage(packageName) {
+  return {
+    type: SET_CURRENT_PACKAGE,
+    packageName,
+  };
+}
+
+/**
+ * Get readme content file
+ *
+ * @param  {content} string README content *
+ *
+ * @return {object}    An action object with a type of TOGGLE_DETAIL_MODE
+ */
+
+export function getReadme(content) {
+  return {
+    type: GET_README,
+    content,
   };
 }
