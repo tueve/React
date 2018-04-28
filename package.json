@@ -81,6 +81,16 @@
       }
     }
   },
+  "prettier": {
+    "trailingComma": "es5",
+    "semi": true,
+    "singleQuote": true,
+    "editor.formatOnSave": true,
+    "prettier.bracketSpacing": true,
+    "prettier.arrowParens": "always",
+    "prettier.printWidth": 60,
+    "insertPragma": true
+  },
   "eslintConfig": {
     "parser": "babel-eslint",
     "extends": "airbnb",
@@ -236,12 +246,14 @@
     "react-chartjs-2": "^2.7.0",
     "react-dom": "16.2.0",
     "react-helmet": "5.1.3",
+    "react-html-parser": "^2.0.2",
     "react-intl": "2.3.0",
     "react-loadable": "4.0.3",
     "react-popper": "^0.8.0",
     "react-redux": "5.0.5",
     "react-router-dom": "4.1.1",
     "react-router-redux": "5.0.0-alpha.6",
+    "react-slick": "^0.23.1",
     "react-social-login": "^3.4.2",
     "reactstrap": "^5.0.0-beta",
     "redux": "^3.7.2",
@@ -249,6 +261,7 @@
     "redux-saga": "0.16.0",
     "reselect": "3.0.1",
     "sanitize.css": "4.1.0",
+    "slick-carousel": "^1.8.1",
     "styled-components": "3.1.4",
     "warning": "3.0.0",
     "whatwg-fetch": "2.0.3"

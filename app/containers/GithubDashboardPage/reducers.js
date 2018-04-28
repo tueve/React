@@ -1,4 +1,5 @@
-/*
+/**
+ * /*
  * Github Dashboard  Reducer
  *
  * The reducer takes care of our data. Using actions, we can change our
@@ -8,32 +9,27 @@
  * Example:
  * case YOUR_ACTION_CONSTANT:
  *   return state.set('yourStateVariable', true);
+ *
+ * @format
  */
 
-import {
-  CHANGE_CATEGORY,
-  LOAD_REPOS_SUCCESS,
-} from './constants';
+import { assoc } from 'lodash/fp';
+
+import { CHANGE_CATEGORY, LOAD_REPOS_SUCCESS } from './constants';
 
 // The initial state of the App
 const initialState = {
-  category        : ['All', 'Javascript', 'Php', 'Python', 'Java', 'C#'],
+  category: ['All', 'Javascript', 'Php', 'Python', 'Java', 'C#'],
   selectedCategory: 'All',
-  data            : {},
+  data: {},
 };
 
 function githubDashBoardReducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_CATEGORY:
-      return {
-        ...state,
-        selectedCategory: action.category,
-      };
+      return assoc('selectedCategory', action.category)(state);
     case LOAD_REPOS_SUCCESS:
-      return {
-        ...state,
-        data: { ...action.datas },
-      };
+      return assoc('data', { ...action.datas })(state);
     default:
       return state;
   }

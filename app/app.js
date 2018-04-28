@@ -3,6 +3,8 @@
  *
  * This is the entry file for the application, only setup and boilerplate
  * code.
+ *
+ * @format
  */
 
 // Needed for redux-saga es6 generator support
@@ -18,6 +20,8 @@ import createHistory from 'history/createBrowserHistory';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'sanitize.css/sanitize.css';
 import 'antd/dist/antd.min.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 // Import root app
 import App from 'containers/App';
@@ -50,11 +54,14 @@ import './global-styles';
 const openSansObserver = new FontFaceObserver('Open Sans', {});
 
 // When Open Sans is loaded, add a font-family using Open Sans to the body
-openSansObserver.load().then(() => {
-  document.body.classList.add('fontLoaded');
-}, () => {
-  document.body.classList.remove('fontLoaded');
-});
+openSansObserver.load().then(
+  () => {
+    document.body.classList.add('fontLoaded');
+  },
+  () => {
+    document.body.classList.remove('fontLoaded');
+  }
+);
 
 // Create redux store with history
 const initialState = {};

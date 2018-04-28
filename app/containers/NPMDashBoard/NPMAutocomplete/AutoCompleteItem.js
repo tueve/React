@@ -1,3 +1,5 @@
+/** @format */
+
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
@@ -5,14 +7,14 @@ import { Icon, Button } from 'antd';
 
 const AutoCompleteItemWrapper = styled.div`
   &:hover {
-    background-color: #FFFDBB;
+    background-color: #fffdbb;
     cursor: pointer;
   }
 `;
 
 const ItemTitle = styled.span`
-  font-size   : 1rem;
-  font-weight : 600;
+  font-size: 1rem;
+  font-weight: 600;
   margin-right: 10px;
 `;
 
@@ -25,21 +27,34 @@ const ActionWrapper = styled.div`
 `;
 
 const ItemDescription = styled.span`
-  font-size: .9rem;
+  font-size: 0.9rem;
   font-weight: 400;
 `;
 
-const handleAddEvt = (onAddPackage, removeAutocompletePackage,  title, toggleDetail) => {
+const handleAddEvt = (
+  onAddPackage,
+  removeAutocompletePackage,
+  title,
+  toggleDetail
+) => {
   onAddPackage(title);
   removeAutocompletePackage();
   toggleDetail && toggleDetail();
 };
 
-const AutoCompleteItem = ({ title, description, onAddPackage, removeAutocompletePackage, onGetInfo, getLink, toggleDetail }) => (
+const AutoCompleteItem = ({
+  title,
+  description,
+  onAddPackage,
+  removeAutocompletePackage,
+  onGetInfo,
+  getLink,
+  toggleDetail,
+}) => (
   <div>
-    <AutoCompleteItemWrapper className="col-12 pl-2 pr-2 pt-2" >
-      <ItemTitle>{ title }</ItemTitle>
-      <ItemDescription>{ description }</ItemDescription>
+    <AutoCompleteItemWrapper className="col-12 pl-2 pr-2 pt-2">
+      <ItemTitle>{title}</ItemTitle>
+      <ItemDescription>{description}</ItemDescription>
       <ActionWrapper className="justify-content-center">
         <Link
           to={{
@@ -50,18 +65,26 @@ const AutoCompleteItem = ({ title, description, onAddPackage, removeAutocomplete
             type="primary"
             className="m-2"
             size="small"
-            onClick={() => handleAddEvt(onGetInfo, removeAutocompletePackage, title, toggleDetail)} >
+            onClick={() =>
+              handleAddEvt(
+                onGetInfo,
+                removeAutocompletePackage,
+                title,
+                toggleDetail
+              )
+            }
+          >
             Get package info<Icon type="right" />
           </Button>
         </Link>
-        <Link
-          to={getLink(title)}
-        >
+        <Link to={getLink(title)}>
           <Button
-            type      = "primary"
-            className = "m-2"
-            size      = "small"
-            onClick   = {() => handleAddEvt(onAddPackage, removeAutocompletePackage, title)}
+            type="primary"
+            className="m-2"
+            size="small"
+            onClick={() =>
+              handleAddEvt(onAddPackage, removeAutocompletePackage, title)
+            }
           >
             Add to compare list<Icon type="right" />
           </Button>
